@@ -9,7 +9,6 @@ android {
     defaultConfig {
         minSdkVersion rootProject.minSdkVersion
         targetSdkVersion rootProject.targetSdkVersion
-
         versionCode rootProject.appVersionCode
         versionName rootProject.appVersionName
 
@@ -44,6 +43,11 @@ android {
     flavorDimensions "default"
     productFlavors {
         production {
+            dimension "default"
+            buildConfigField 'String', 'VERSION_NAME', "\"${rootProject.appVersionName}\""
+        }
+
+        dev {
             dimension "default"
             buildConfigField 'String', 'VERSION_NAME', "\"${rootProject.appVersionName}\""
         }
