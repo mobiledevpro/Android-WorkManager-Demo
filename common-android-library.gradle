@@ -46,12 +46,9 @@ android {
             dimension "default"
             buildConfigField 'String', 'VERSION_NAME', "\"${rootProject.appVersionName}\""
         }
-
-        dev {
-            dimension "default"
-            buildConfigField 'String', 'VERSION_NAME', "\"${rootProject.appVersionName}\""
-        }
     }
 
-    buildFeatures.buildConfig = true
+    buildFeatures {
+        buildConfig true
+    }
 }
