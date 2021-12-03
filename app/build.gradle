@@ -95,12 +95,10 @@ android {
         viewBinding true
         buildConfig true
     }
-/*
     dynamicFeatures = [
             ':feature:home'
     ]
 
- */
 }
 
 dependencies {

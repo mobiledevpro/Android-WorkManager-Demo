@@ -3,5 +3,6 @@ include(
     ":core:navigation",
     ":core:utils",
     ":core:rx",
-    ":core:database"
+    ":core:database",
+    ":feature:home"
 )
