@@ -4,11 +4,4 @@
 
     <item android:drawable="@color/colorWindowBackground" />
 
-    <!-- App logo -->
-    <item>
-        <bitmap
-            android:src="@mipmap/ic_launcher_foreground"
-            android:gravity="center"/>
-    </item>
-
 </layer-list>

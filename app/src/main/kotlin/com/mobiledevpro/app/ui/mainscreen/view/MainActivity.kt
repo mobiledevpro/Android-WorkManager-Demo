@@ -32,22 +32,4 @@ class MainActivity : BaseActivity(
     override fun initViews(layoutView: View) {
         //do something: as example, init bottom navigation.
     }
-
-    override fun setAppBarTitle(titleString: String) {
-        supportActionBar?.apply {
-            //custom title uses instead of default
-            setDisplayShowTitleEnabled(false)
-            findViewById<TextView>(R.id.toolbar_title)?.text = titleString
-        }
-    }
-
-    override fun setAppBarTitleColor(colorResId: Int) {
-        supportActionBar?.apply {
-            //custom title uses instead of default
-            setDisplayShowTitleEnabled(false)
-            findViewById<TextView>(R.id.toolbar_title)?.setTextColor(
-                getColorCompatible(colorResId)
-            )
-        }
-    }
 }

@@ -14,11 +14,6 @@ android.productFlavors{
             buildConfigField "String", "DB_NAME", "\"app_database\""
             buildConfigField "int", "DB_VERSION", "1"
         }
-
-        dev {
-            buildConfigField "String", "DB_NAME", "\"app_database_demo\""
-            buildConfigField "int", "DB_VERSION", "1"
-        }
     }
 }
 
@@ -39,9 +34,4 @@ dependencies {
     implementation deps.roomRx
     implementation deps.roomKtx
     kapt deps.roomCompiler
-
-    androidTestImplementation deps.roomTesting
-    testImplementation deps.jUnit
-    androidTestImplementation deps.jUnitExt
-    androidTestImplementation deps.testRunner
 }

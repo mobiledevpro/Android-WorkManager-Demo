@@ -29,8 +29,8 @@ fun Fragment.launch(navigation: Navigation) {
     val commonNavOptionsBuilder = NavOptions.Builder()
 
     val navResId = when (navigation.to) {
-        NavigateTo.CHAT_MAIN -> R.id.actionNavToChatMain
-        NavigateTo.PROFILE_SETTINGS -> R.id.actionNavToProfileSettings
+       // NavigateTo.CHAT_MAIN -> R.id.actionNavToChatMain
+      //  NavigateTo.PROFILE_SETTINGS -> R.id.actionNavToProfileSettings
         else -> 0
     }
 
