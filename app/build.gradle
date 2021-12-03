@@ -1,0 +1,191 @@
+plugins {
+    id 'com.android.application'
+    id 'kotlin-android'
+    id 'kotlin-kapt'
+    id 'androidx.navigation.safeargs.kotlin'
+    id 'com.google.gms.google-services'
+    id 'com.google.firebase.crashlytics'
+    id 'com.google.firebase.firebase-perf'
+}
+
+android {
+    compileSdkVersion rootProject.compileSdkVersion
+
+    defaultConfig {
+        applicationId "com.mobiledevpro.apptemplate.new"
+        minSdkVersion rootProject.minSdkVersion
+        targetSdkVersion rootProject.targetSdkVersion
+        vectorDrawables.useSupportLibrary = true
+        multiDexEnabled false
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    dexOptions {
+        maxProcessCount 2
+        javaMaxHeapSize "2g"
+    }
+
+    signingConfigs {
+        //DON"T forget to add APP_KEYPWD and APP_KSTOREPWD to ENV on CI
+        release {
+            try {
+                keyAlias 'here alias value'
+                keyPassword System.getenv("APP_KEYPWD")
+                storeFile file('here key file name')
+                storePassword System.getenv("APP_KSTOREPWD")
+            } catch (e) {
+                throw new InvalidUserDataException("You should define APP_KSTOREPWD and APP_KEYPWD in the system ENV. " + e)
+            }
+        }
+    }
+
+    packagingOptions {
+        exclude 'META-INF/*.kotlin_module'
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    kotlinOptions {
+        jvmTarget = JavaVersion.VERSION_1_8.toString()
+    }
+
+    buildTypes {
+        debug {
+            debuggable true
+            firebaseCrashlytics {
+                // False -  don't need crash reporting for debug build.
+                mappingFileUploadEnabled false
+            }
+        }
+        release {
+            debuggable false
+            minifyEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.release
+        }
+    }
+
+    flavorDimensions "default"
+    productFlavors {
+        production {
+            dimension "default"
+            applicationId defaultConfig.applicationId
+            versionCode rootProject.appVersionCode
+            versionName rootProject.appVersionName
+            //custom naming for App Bundle builds
+            archivesBaseName = "${applicationId}-v${versionName}-build${versionCode}"
+
+            //it allows to use the same flavor in android modules/libraries
+            matchingFallbacks = ["production"]
+        }
+
+        dev {
+            dimension "default"
+            applicationId defaultConfig.applicationId + ".dev"
+            versionCode rootProject.appVersionCode
+            versionName rootProject.appVersionName + "-dev"
+            //custom naming for App Bundle builds
+            archivesBaseName = "${applicationId}-v${versionName}-build${versionCode}"
+
+            //it allows to use the same flavor in android modules/libraries
+            matchingFallbacks = ["dev"]
+
+            //use this flavor by default
+            getIsDefault().set(true)
+        }
+    }
+
+    sourceSets {
+        main {
+            res.srcDirs = [
+                    'src/main/res/layouts/activity',
+                    'src/main/res/layouts/fragment',
+                    'src/main/res/layouts/adapter',
+                    'src/main/res/layouts/include',
+                    'src/main/res/layouts/preference',
+                    'src/main/res' //it should be the last item here (it affects on output directory in Assets Studio)
+            ]
+            java.srcDirs = ['src/main/kotlin']
+        }
+    }
+
+    kapt.correctErrorTypes = true
+
+    testOptions {
+        unitTests.includeAndroidResources = true
+    }
+
+    buildFeatures.dataBinding = true
+    buildFeatures.viewBinding = true
+    buildFeatures.buildConfig = true
+
+    dynamicFeatures = [
+            ':feature:chat_main',
+            ':feature:chat_core',
+            ':feature:profile_settings'
+    ]
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+
+    api deps.appcompat
+    api deps.material
+    api deps.preference
+    api deps.constraintLayout
+
+    api deps.fragment
+
+    api deps.coreKtx
+    api deps.playCore
+    api deps.playCoreKtx
+
+    //common UI lib
+    productionApi deps.commonUI //<-- use published library from jitpack.io
+    devApi project(":common-ui") //<-- use local module
+
+    //DI
+    api deps.koinCore
+    api deps.koinAndroid
+
+    //Lifecycle
+    api deps.viewModel
+    api deps.liveData
+    api deps.saveState
+    kapt deps.lifecycleCompiler
+
+    //memory leak detection in debug
+    debugApi deps.leakcanaryDebug
+
+    //Glide
+    api deps.glide
+    kapt deps.glideCompiler
+
+    //Lottie animation
+    api deps.lottie
+
+    //Firebase
+    api platform(deps.firebaseBom)
+    api deps.firebasePerformance
+    api deps.crashlytics
+    api deps.firebaseAnalytics
+
+    //core modules for the whole app including feature modules
+    api core.navigation
+    api core.rx
+    api core.errors
+    api core.utils
+    api core.database
+
+    testImplementation deps.jUnit
+    androidTestImplementation deps.jUnitExt
+    androidTestImplementation deps.testRunner
+    androidTestImplementation deps.espressoCore
+    testImplementation deps.mockito
+    testImplementation deps.koinTest
+}
+

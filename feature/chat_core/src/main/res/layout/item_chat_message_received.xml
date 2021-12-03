@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:bind="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="message"
+            type="com.mobiledevpro.chat.core.domain.model.ChatMessage" />
+
+        <variable
+            name="handler"
+            type="com.mobiledevpro.chat.core.view.recycler.RecyclerViewHandler" />
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
+        android:minHeight="@dimen/default_view_height"
+        android:onClick="@{() -> handler.onClickItem(message)}"
+        android:paddingStart="@dimen/activity_vertical_margin"
+        android:paddingEnd="@dimen/activity_vertical_margin">
+
+        <ImageView
+            android:id="@+id/iv_avatar_recipient"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:contentDescription="@null"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:srcCompat="@drawable/ic_message_avatar_white_24dp"
+            bind:imageUrl="@{message.avatarUrl}"
+            bind:isCircle="@{message.avatarCircled}" />
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/iv_avatar_recipient">
+
+            <TextView
+                style="@style/AppTheme.Message.Chat"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:background="@drawable/background_message_received"
+                android:text="@{message.text}"
+                android:textColor="@color/colorTextMessageReceived"
+                tools:text="How are you? How are you? How are you? How are you? How are you? How are you? =)" />
+
+            <TextView
+                style="@style/AppTheme.Message.Time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@{message.formattedTime}"
+                tools:text="12:11 AM" />
+        </LinearLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
