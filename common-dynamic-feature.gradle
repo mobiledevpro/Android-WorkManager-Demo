@@ -13,8 +13,6 @@ android {
         versionName rootProject.appVersionName
         versionCode rootProject.appVersionCode
 
-        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
-
         consumerProguardFiles "consumer-rules.pro"
     }
 
@@ -46,9 +44,6 @@ android {
     flavorDimensions "default"
     productFlavors {
         production {
-            dimension "default"
-        }
-        dev {
             dimension "default"
         }
     }
