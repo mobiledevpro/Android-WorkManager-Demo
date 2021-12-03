@@ -2,23 +2,12 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@id/nav_main"
-    app:startDestination="@id/feature_chat_main">
-
+    app:startDestination="@id/feature_home">
+<!--
     <include-dynamic
-        android:id="@id/feature_chat_main"
-        app:graphResName="nav_chat_main"
-        app:moduleName="chat_main" />
+        android:id="@id/feature_home"
+        app:graphResName="nav_home"
+        app:moduleName="home" />
+        -->
 
-    <include-dynamic
-        android:id="@id/feature_profile_settings"
-        app:graphResName="nav_profile_settings"
-        app:moduleName="profile_settings" />
-
-    <action
-        android:id="@+id/actionNavToChatMain"
-        app:destination="@id/feature_chat_main" />
-
-    <action
-        android:id="@+id/actionNavToProfileSettings"
-        app:destination="@id/feature_profile_settings" />
 </navigation>

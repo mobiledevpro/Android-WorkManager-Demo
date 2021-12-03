@@ -5,5 +5,5 @@ android.defaultConfig {
 }
 
 dependencies {
-    implementation features.chatCore
+
 }

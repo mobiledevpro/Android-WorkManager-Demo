@@ -95,12 +95,12 @@ android {
         viewBinding true
         buildConfig true
     }
-
+/*
     dynamicFeatures = [
-            ':feature:chat_main',
-            ':feature:chat_core',
-            ':feature:profile_settings'
+            ':feature:home'
     ]
+
+ */
 }
 
 dependencies {
@@ -136,7 +136,6 @@ dependencies {
     //core modules for the whole app including feature modules
     api core.navigation
     api core.rx
-    api core.errors
     api core.utils
     api core.database
 }

@@ -18,8 +18,6 @@
 package com.mobiledevpro.app.helper
 
 import android.content.res.Resources
-import com.mobiledevpro.app.R
-import com.mobiledevpro.errors.NetworkConnectionThrowable
 
 /**
  * Provider for app resources (as example, from strings.xml)
@@ -33,10 +31,6 @@ class ImplResourcesProvider(
 
     override fun getErrorMessage(throwable: Throwable?): String =
         when (throwable) {
-
-            is NetworkConnectionThrowable ->
-                resources.getString(R.string.message_trouble_internet_connection)
-
             else -> throwable?.localizedMessage ?: ""
         }
 
