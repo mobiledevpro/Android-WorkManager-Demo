@@ -2,7 +2,7 @@
 
 buildscript {
     ext.rootVersions = [
-            "kotlin"        : "1.5.31",
+            "kotlin"        : "1.6.0",
             "gradle"        : "4.2.2",
             "playServices"  : "4.3.10",
             "koin"          : "3.1.2",
