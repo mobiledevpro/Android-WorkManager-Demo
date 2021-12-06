@@ -4,5 +4,6 @@ include(
     ":core:utils",
     ":core:rx",
     ":core:database",
-    ":feature:home"
+    ":feature:home",
+    ":feature:worker"
 )

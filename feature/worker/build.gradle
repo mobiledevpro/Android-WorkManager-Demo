@@ -1,0 +1,10 @@
+apply from: "$rootDir/common-dynamic-feature.gradle"
+
+android.defaultConfig {
+    applicationId "com.mobiledevpro.worker"
+}
+
+dependencies {
+    implementation deps.workmanagerKt
+    implementation deps.workmanagerRx
+}

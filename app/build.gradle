@@ -96,7 +96,7 @@ android {
         buildConfig true
     }
     dynamicFeatures = [
-            ':feature:home'
+            ':feature:home', ':feature:worker'
     ]
 
 }
