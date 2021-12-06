@@ -18,6 +18,8 @@
 package com.mobiledevpro.worker
 
 import android.content.Context
+import android.util.Log
+import androidx.work.Configuration
 import androidx.work.OneTimeWorkRequestBuilder
 import androidx.work.WorkManager
 import androidx.work.WorkRequest
@@ -26,6 +28,15 @@ import androidx.work.WorkRequest
 class WorkManagerUtil(
     private val appContext: Context
 ) {
+
+    private val customConfig = Configuration.Builder()
+        .setMinimumLoggingLevel(Log.DEBUG)
+        .build()
+
+    init {
+        Log.d("WorkerTest", "WorkManagerUtil initialized")
+        WorkManager.initialize(appContext, customConfig)
+    }
 
     private val onetimeUploadFilesWorkerRequest: WorkRequest =
         OneTimeWorkRequestBuilder<UploadFilesWorker>()

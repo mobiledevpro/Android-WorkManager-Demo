@@ -35,13 +35,6 @@ private val featureHomeModule = module {
                 workMangerUtil = get()
             )
         }
-
-        scoped {
-            WorkManagerUtil(
-                appContext = androidApplication().applicationContext
-            )
-        }
-
     }
 }
 
