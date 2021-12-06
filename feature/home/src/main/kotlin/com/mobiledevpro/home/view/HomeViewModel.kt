@@ -18,9 +18,9 @@
 package com.mobiledevpro.home.view
 
 import androidx.lifecycle.Lifecycle
-import androidx.lifecycle.LifecycleObserver
 import androidx.lifecycle.OnLifecycleEvent
 import com.mobiledevpro.common.ui.base.BaseViewModel
+import com.mobiledevpro.worker.WorkManagerUtil
 
 /**
  * View model for Home screen
@@ -29,7 +29,9 @@ import com.mobiledevpro.common.ui.base.BaseViewModel
  *
  */
 
-class HomeViewModel : BaseViewModel() {
+class HomeViewModel(
+    private val workMangerUtil: WorkManagerUtil
+) : BaseViewModel() {
 
 
     @OnLifecycleEvent(Lifecycle.Event.ON_START)
@@ -40,5 +42,9 @@ class HomeViewModel : BaseViewModel() {
     @OnLifecycleEvent(Lifecycle.Event.ON_STOP)
     fun onStopView() {
         //do something on stop view if it's needed
+    }
+
+    fun onClickSchedule() {
+        workMangerUtil.submitOnetimeWorkerRequest()
     }
 }

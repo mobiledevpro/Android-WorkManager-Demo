@@ -20,6 +20,8 @@ package com.mobiledevpro.home.di
 import androidx.fragment.app.Fragment
 import com.mobiledevpro.home.view.HomeFragment
 import com.mobiledevpro.home.view.HomeViewModel
+import com.mobiledevpro.worker.WorkManagerUtil
+import org.koin.android.ext.koin.androidApplication
 import org.koin.androidx.scope.createScope
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.core.context.loadKoinModules
@@ -30,6 +32,13 @@ private val featureHomeModule = module {
     scope<HomeFragment> {
         viewModel {
             HomeViewModel(
+                workMangerUtil = get()
+            )
+        }
+
+        scoped {
+            WorkManagerUtil(
+                appContext = androidApplication().applicationContext
             )
         }
 

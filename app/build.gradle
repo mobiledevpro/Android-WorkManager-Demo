@@ -8,7 +8,7 @@ android {
     compileSdkVersion rootProject.compileSdkVersion
 
     defaultConfig {
-        applicationId "com.mobiledevpro.example.workmanager"
+        applicationId "com.mobiledevpro.sample.workmanager"
         minSdkVersion rootProject.minSdkVersion
         targetSdkVersion rootProject.targetSdkVersion
         vectorDrawables.useSupportLibrary = true
@@ -95,8 +95,9 @@ android {
         viewBinding true
         buildConfig true
     }
+
     dynamicFeatures = [
-            ':feature:home', ':feature:worker'
+            ':feature:home'
     ]
 
 }
@@ -136,5 +137,6 @@ dependencies {
     api core.rx
     api core.utils
     api core.database
+    api core.worker
 }
 
