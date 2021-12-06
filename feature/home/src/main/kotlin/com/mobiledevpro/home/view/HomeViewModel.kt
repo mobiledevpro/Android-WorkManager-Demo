@@ -17,10 +17,11 @@
  */
 package com.mobiledevpro.home.view
 
-import androidx.lifecycle.Lifecycle
-import androidx.lifecycle.OnLifecycleEvent
+import androidx.lifecycle.*
+import androidx.work.WorkInfo
 import com.mobiledevpro.common.ui.base.BaseViewModel
 import com.mobiledevpro.worker.WorkManagerUtil
+import java.util.*
 
 /**
  * View model for Home screen
@@ -33,7 +34,6 @@ class HomeViewModel(
     private val workMangerUtil: WorkManagerUtil
 ) : BaseViewModel() {
 
-
     @OnLifecycleEvent(Lifecycle.Event.ON_START)
     fun onStartView() {
         //do something on start view if it's needed
@@ -45,6 +45,10 @@ class HomeViewModel(
     }
 
     fun onClickSchedule() {
-        workMangerUtil.submitOnetimeWorkerRequest()
+        // workMangerUtil.submitOnetimeWorkerRequest()
+        workMangerUtil.submitPeriodicWorkerRequest()
     }
+
+    fun getUploadFilesWorkerInfo(): LiveData<WorkInfo> =
+        workMangerUtil.getLastWorkerInfo()
 }

@@ -17,8 +17,10 @@
  */
 package com.mobiledevpro.home.view
 
+import android.util.Log
 import com.mobiledevpro.common.ui.base.BaseFragment
 import com.mobiledevpro.common.ui.base.FragmentSettings
+import com.mobiledevpro.common.ui.extension.observe
 import com.mobiledevpro.home.R
 import com.mobiledevpro.home.databinding.FragmentHomeBinding
 import com.mobiledevpro.home.di.inject
@@ -50,23 +52,13 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(
     }
 
     override fun observeLifecycleEvents() {
-        /*  observe(viewModel.appbarTitle, observer = { title ->
-              (requireActivity() is BaseActivityInterface).apply {
-                  (requireActivity() as BaseActivityInterface).setAppBarTitle(title)
-              }
-          })
 
-          observe(viewModel.eventNavigateTo, observer = { navigation ->
-              try {
-                  openScreen(navigation)
-              } catch (e: RuntimeException) {
-                  val err = e.localizedMessage
-                  if (!err.isNullOrEmpty())
-                      showErrorDialog(err)
-              }
-          })
-
-         */
+        observe(viewModel.getUploadFilesWorkerInfo()) { info ->
+            Log.d(
+                "WorkerTest",
+                "observeLifecycleEvents: ${info.id} | ${info.state} | ${info.progress}"
+            )
+        }
     }
 
 

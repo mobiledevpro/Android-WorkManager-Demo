@@ -10,6 +10,7 @@
 
 ![GitHub last commit](https://img.shields.io/github/last-commit/dmitriy-chernysh/Jetpack-WorkManager-Example?color=red&style=for-the-badge)
 
+## [WorkManager basics (article)](https://medium.com/androiddevelopers/workmanager-basics-beba51e94048)
 
 ## Authors:
 

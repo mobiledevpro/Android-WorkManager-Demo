@@ -19,10 +19,12 @@ package com.mobiledevpro.worker
 
 import android.content.Context
 import android.util.Log
-import androidx.work.Configuration
-import androidx.work.OneTimeWorkRequestBuilder
-import androidx.work.WorkManager
-import androidx.work.WorkRequest
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MediatorLiveData
+import androidx.lifecycle.MutableLiveData
+import androidx.work.*
+import java.util.*
+import java.util.concurrent.TimeUnit
 
 
 class WorkManagerUtil(
@@ -33,18 +35,67 @@ class WorkManagerUtil(
         .setMinimumLoggingLevel(Log.DEBUG)
         .build()
 
+    private val constraints = Constraints.Builder()
+        .setRequiredNetworkType(NetworkType.CONNECTED)
+        .setRequiresBatteryNotLow(true)
+        .build()
+
+    private val onetimeUploadFilesWorkerRequestBuilder =
+        OneTimeWorkRequestBuilder<UploadFilesWorker>()
+            .setConstraints(constraints)
+            .setBackoffCriteria(
+                BackoffPolicy.LINEAR,
+                OneTimeWorkRequest.MIN_BACKOFF_MILLIS,
+                TimeUnit.MILLISECONDS
+            )
+
+    private val periodicUploadFilesWorkerRequestBuilder =
+        PeriodicWorkRequestBuilder<UploadFilesWorker>(1, TimeUnit.MINUTES)
+            .setConstraints(constraints)
+
+    private val _lastWorkRequestId = MutableLiveData<UUID>()
+
+
     init {
         Log.d("WorkerTest", "WorkManagerUtil initialized")
         WorkManager.initialize(appContext, customConfig)
     }
 
-    private val onetimeUploadFilesWorkerRequest: WorkRequest =
-        OneTimeWorkRequestBuilder<UploadFilesWorker>()
-            .build()
+    fun getLastWorkerInfo(): LiveData<WorkInfo> {
+        val result = MediatorLiveData<WorkInfo>()
+
+        result.addSource(_lastWorkRequestId) {
+            WorkManager.getInstance(appContext)
+                .getWorkInfoByIdLiveData(it)
+        }
+
+        return result
+    }
+
 
     fun submitOnetimeWorkerRequest() {
+
+        Log.d("WorkerTest", "WorkManagerUtil submitOnetimeWorkerRequest")
+        val request = onetimeUploadFilesWorkerRequestBuilder.build()
+        _lastWorkRequestId.value = request.id
+
+        //send request
         WorkManager
             .getInstance(appContext)
-            .enqueue(onetimeUploadFilesWorkerRequest)
+            .enqueue(request)
+    }
+
+    fun submitPeriodicWorkerRequest() {
+        Log.d("WorkerTest", "WorkManagerUtil submitPeriodicWorkerRequest")
+        val request = periodicUploadFilesWorkerRequestBuilder.build()
+        _lastWorkRequestId.value = request.id
+
+        WorkManager
+            .getInstance(appContext)
+            .enqueueUniquePeriodicWork(
+                "PeriodicWork",
+                ExistingPeriodicWorkPolicy.KEEP,
+                request
+            )
     }
 }
