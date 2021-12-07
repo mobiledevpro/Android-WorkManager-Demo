@@ -15,6 +15,8 @@
 ## Notes:
 
 + The minimal interval for periodic tasks is 15 minutes, even if you set 1 min.
++ Retry with Backoff policy supports the minimum 10 sec and the maximum 5 hours interval (30 sec by
+  default).
 
 ## Authors:
 
