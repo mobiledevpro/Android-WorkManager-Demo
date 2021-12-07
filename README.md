@@ -12,6 +12,10 @@
 
 ## [WorkManager basics (article)](https://medium.com/androiddevelopers/workmanager-basics-beba51e94048)
 
+## Notes:
+
++ The minimal interval for periodic tasks is 15 minutes, even if you set 1 min.
+
 ## Authors:
 
 <a href="https://www.instagram.com/mobiledevpro/" target="_blank">
