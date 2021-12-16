@@ -17,31 +17,27 @@
  */
 package com.mobiledevpro.home.di
 
-import androidx.fragment.app.Fragment
 import com.mobiledevpro.home.view.HomeFragment
 import com.mobiledevpro.home.view.HomeViewModel
-import com.mobiledevpro.worker.WorkManagerUtil
-import org.koin.android.ext.koin.androidApplication
-import org.koin.androidx.scope.createScope
+import com.mobiledevpro.worker.UploadFilesWorker
 import org.koin.androidx.viewmodel.dsl.viewModel
-import org.koin.core.context.loadKoinModules
+import org.koin.androidx.workmanager.dsl.worker
 import org.koin.dsl.module
 
 
-private val featureHomeModule = module {
+val featureHomeModule = module {
     scope<HomeFragment> {
         viewModel {
             HomeViewModel(
-                workMangerUtil = get()
+                workManagerUtil = get()
+            )
+        }
+
+        worker {
+            UploadFilesWorker(
+                appContext = get(),
+                params = get()
             )
         }
     }
-}
-
-fun Fragment.inject() : Lazy<HomeViewModel> = lazy(LazyThreadSafetyMode.NONE) {
-    loadKoinModules(featureHomeModule)
-
-    val fragmentScope = this.createScope(this)
-
-    fragmentScope.get()
 }

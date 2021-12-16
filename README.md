@@ -12,6 +12,8 @@
 
 ## [WorkManager basics (article)](https://medium.com/androiddevelopers/workmanager-basics-beba51e94048)
 
+## [WorkManager custom configuration and WorkerFactory (article)](https://medium.com/androiddevelopers/customizing-workmanager-fundamentals-fdaa17c46dd2)
+
 ## Notes:
 
 + The minimal interval for periodic tasks is 15 minutes, even if you set 1 min.

@@ -7,7 +7,7 @@
 
         <!-- By default, WorkManager configures itself automatically when your app starts -->
 
-        <!--
+
          <provider
              android:name="androidx.startup.InitializationProvider"
              android:authorities="${applicationId}.androidx-startup"
@@ -17,20 +17,20 @@
              tools:node="merge"
              tools:targetApi="n">
 
-             If you are using androidx.startup library, remove the default initializer to initialize other components
+            <!-- If you are using androidx.startup library, remove the default initializer to initialize other components -->
              <meta-data
                  android:name="androidx.work.WorkManagerInitializer"
                  android:value="androidx.startup"
                  tools:node="remove" />
          </provider>
-     -->
 
 
         <!-- If you want to disable android.startup completely to use a custom configuration for WorkManager, use this -->
-        <provider
-            android:name="androidx.startup.InitializationProvider"
-            android:authorities="${applicationId}.androidx-startup"
-            tools:node="remove" />
+        <!--  <provider
+              android:name="androidx.startup.InitializationProvider"
+              android:authorities="${applicationId}.androidx-startup"
+              tools:node="remove" />
+              -->
 
     </application>
 </manifest>

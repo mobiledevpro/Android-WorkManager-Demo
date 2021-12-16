@@ -4,6 +4,8 @@ dependencies {
     api deps.workmanager
     api deps.workmanagerKt
     api deps.workmanagerRx
+    implementation deps.koinCore
+    implementation deps.koinAndroid
     /*
     testImplementation 'junit:junit:4.+'
     androidTestImplementation 'androidx.test.ext:junit:1.1.3'

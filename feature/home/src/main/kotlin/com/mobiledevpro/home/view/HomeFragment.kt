@@ -17,13 +17,16 @@
  */
 package com.mobiledevpro.home.view
 
-import android.util.Log
 import com.mobiledevpro.common.ui.base.BaseFragment
 import com.mobiledevpro.common.ui.base.FragmentSettings
-import com.mobiledevpro.common.ui.extension.observe
 import com.mobiledevpro.home.R
 import com.mobiledevpro.home.databinding.FragmentHomeBinding
-import com.mobiledevpro.home.di.inject
+import com.mobiledevpro.home.di.featureHomeModule
+import org.koin.android.ext.android.inject
+import org.koin.android.scope.AndroidScopeComponent
+import org.koin.androidx.scope.fragmentScope
+import org.koin.core.context.loadKoinModules
+import org.koin.core.scope.Scope
 import com.mobiledevpro.app.R as RApp
 
 /**
@@ -41,10 +44,15 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(
         appBarColor = RApp.color.colorPrimary,
         appWindowBackground = RApp.color.colorWindowGreyBackground
     )
-) {
+), AndroidScopeComponent {
+
+    override val scope: Scope by fragmentScope()
 
     private val viewModel: HomeViewModel by inject()
 
+    init {
+        loadKoinModules(featureHomeModule)
+    }
 
     override fun onInitDataBinding() {
         viewBinding.model = viewModel
@@ -52,13 +60,15 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(
     }
 
     override fun observeLifecycleEvents() {
-
+/*
         observe(viewModel.getUploadFilesWorkerInfo()) { info ->
             Log.d(
                 "WorkerTest",
                 "observeLifecycleEvents: ${info.id} | ${info.state} | ${info.progress}"
             )
         }
+
+ */
     }
 
 

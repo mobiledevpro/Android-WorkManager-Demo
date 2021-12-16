@@ -3,6 +3,7 @@ package com.mobiledevpro.app
 import android.app.Application
 import com.mobiledevpro.app.di.*
 import org.koin.android.ext.koin.androidContext
+import org.koin.androidx.workmanager.koin.workManagerFactory
 import org.koin.core.context.startKoin
 
 /**
@@ -20,9 +21,11 @@ import org.koin.core.context.startKoin
 class App : Application() {
     override fun onCreate() {
         super.onCreate()
+
         startKoin {
             androidContext(this@App)
             modules(getModules())
+            workManagerFactory()
         }
     }
 }
