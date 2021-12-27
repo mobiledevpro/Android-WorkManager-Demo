@@ -17,15 +17,18 @@
  */
 package com.mobiledevpro.home.view
 
+import android.util.Log
 import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MediatorLiveData
 import androidx.lifecycle.OnLifecycleEvent
-import androidx.work.OneTimeWorkRequestBuilder
 import androidx.work.PeriodicWorkRequestBuilder
+import androidx.work.WorkInfo
 import androidx.work.WorkManager
 import com.mobiledevpro.common.ui.base.BaseViewModel
 import com.mobiledevpro.worker.price.alerter.PriceAlerterWorker
+import com.mobiledevpro.workmanager.cancelByTag
 import com.mobiledevpro.workmanager.runUniqueWork
-import com.mobiledevpro.workmanager.setDefaultBackOffCriteria
 import com.mobiledevpro.workmanager.setDefaultConstraints
 import java.util.concurrent.TimeUnit
 
@@ -50,35 +53,39 @@ class HomeViewModel(
         //do something on stop view if it's needed
     }
 
-    fun onClickSchedule() {
+    fun onClickStartSchedule() {
         //startOnetimeWorker()
         startPeriodicWorker()
     }
 
-    /*
-    fun getUploadFilesWorkerInfo(): LiveData<WorkInfo> =
-        workMangerUtil.getLastWorkerInfo()
-
-     */
-
-    private fun startOnetimeWorker() {
-        OneTimeWorkRequestBuilder<PriceAlerterWorker>()
-            .setDefaultConstraints()
-            .setDefaultBackOffCriteria()
-            .build()
-            .let { request ->
-
-                workManager.runUniqueWork(
-                    request,
-                    "${PriceAlerterWorker::class.java.name}_onetime"
-                )
-            }
-
+    fun onClickStopSchedule() {
+        workManager.cancelByTag(PriceAlerterWorker.TAG)
     }
+
+    fun isSchedulerRunning(): LiveData<Boolean> {
+        val isRunning = MediatorLiveData<Boolean>()
+
+        val check: (List<WorkInfo>) -> Boolean = { workInfoList ->
+            val info = workInfoList.last()
+            Log.d("WorkerTest", "workInfo: $info ")
+
+            !info.state.isFinished
+        }
+
+        isRunning.value = false
+
+        isRunning.addSource(workManager.getWorkInfosByTagLiveData(PriceAlerterWorker.TAG)) { workInfoList ->
+            isRunning.value = check(workInfoList)
+        }
+
+        return isRunning
+    }
+
 
     private fun startPeriodicWorker() {
         PeriodicWorkRequestBuilder<PriceAlerterWorker>(15, TimeUnit.MINUTES)
             .setDefaultConstraints()
+            .addTag(PriceAlerterWorker.TAG)
             .build()
             .let { request ->
                 workManager.runUniqueWork(
@@ -87,5 +94,23 @@ class HomeViewModel(
                 )
             }
     }
+
+    /*
+    private fun startOnetimeWorker() {
+        OneTimeWorkRequestBuilder<PriceAlerterWorker>()
+            .setDefaultConstraints()
+            .setDefaultBackOffCriteria()
+            .addTag(PriceAlerterWorker.TAG)
+            .build()
+            .let { request ->
+
+                workManager.runUniqueWork(
+                    request,
+                    "${PriceAlerterWorker::class.java.name}_onetime"
+                )
+            }
+    }
+
+ */
 
 }

@@ -19,6 +19,7 @@ package com.mobiledevpro.home.view
 
 import com.mobiledevpro.common.ui.base.BaseFragment
 import com.mobiledevpro.common.ui.base.FragmentSettings
+import com.mobiledevpro.common.ui.extension.observe
 import com.mobiledevpro.home.R
 import com.mobiledevpro.home.databinding.FragmentHomeBinding
 import com.mobiledevpro.home.di.featureHomeModule
@@ -66,15 +67,26 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(
     }
 
     override fun observeLifecycleEvents() {
-/*
-        observe(viewModel.getUploadFilesWorkerInfo()) { info ->
-            Log.d(
-                "WorkerTest",
-                "observeLifecycleEvents: ${info.id} | ${info.state} | ${info.progress}"
-            )
+
+        observe(viewModel.isSchedulerRunning()) { isRunning ->
+
+            val text = if (isRunning)
+                RApp.string.button_stop_schedule
+            else
+                RApp.string.button_start_schedule
+
+            viewBinding.btnStartStop.apply {
+                this.setText(text)
+                this.setOnClickListener {
+                    if (isRunning)
+                        viewModel.onClickStopSchedule()
+                    else
+                        viewModel.onClickStartSchedule()
+                }
+            }
         }
 
- */
+
     }
 
 
