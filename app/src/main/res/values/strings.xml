@@ -1,6 +1,9 @@
 <resources>
-    <string name="app_name">WorkManager Sample</string>
+    <string name="app_name">Stock Price Alerter</string>
 
-    <string name="button_start_schedule">Start Scheduling</string>
+    <string name="button_start_schedule">Start Checking Price</string>
+    <string name="button_stop_schedule">Stop Checking Price</string>
+
+    <string name="message_alert_explanation">You\'ll be notified on price changes every 15 minutes\nbetween 9:30 p.m. and 4:00 p.m. by US time</string>
 
 </resources>

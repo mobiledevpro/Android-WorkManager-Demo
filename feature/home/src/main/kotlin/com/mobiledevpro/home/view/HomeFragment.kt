@@ -19,9 +19,16 @@ package com.mobiledevpro.home.view
 
 import com.mobiledevpro.common.ui.base.BaseFragment
 import com.mobiledevpro.common.ui.base.FragmentSettings
+import com.mobiledevpro.common.ui.extension.observe
 import com.mobiledevpro.home.R
 import com.mobiledevpro.home.databinding.FragmentHomeBinding
-import com.mobiledevpro.home.di.inject
+import com.mobiledevpro.home.di.featureHomeModule
+import com.mobiledevpro.worker.price.alerter.di.featurePriceAlerterModule
+import org.koin.android.ext.android.inject
+import org.koin.android.scope.AndroidScopeComponent
+import org.koin.androidx.scope.fragmentScope
+import org.koin.core.context.loadKoinModules
+import org.koin.core.scope.Scope
 import com.mobiledevpro.app.R as RApp
 
 /**
@@ -39,10 +46,20 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(
         appBarColor = RApp.color.colorPrimary,
         appWindowBackground = RApp.color.colorWindowGreyBackground
     )
-) {
+), AndroidScopeComponent {
+
+    override val scope: Scope by fragmentScope()
 
     private val viewModel: HomeViewModel by inject()
 
+    init {
+        loadKoinModules(
+            arrayListOf(
+                featureHomeModule,
+                featurePriceAlerterModule
+            )
+        )
+    }
 
     override fun onInitDataBinding() {
         viewBinding.model = viewModel
@@ -50,23 +67,26 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(
     }
 
     override fun observeLifecycleEvents() {
-        /*  observe(viewModel.appbarTitle, observer = { title ->
-              (requireActivity() is BaseActivityInterface).apply {
-                  (requireActivity() as BaseActivityInterface).setAppBarTitle(title)
-              }
-          })
 
-          observe(viewModel.eventNavigateTo, observer = { navigation ->
-              try {
-                  openScreen(navigation)
-              } catch (e: RuntimeException) {
-                  val err = e.localizedMessage
-                  if (!err.isNullOrEmpty())
-                      showErrorDialog(err)
-              }
-          })
+        observe(viewModel.isSchedulerRunning()) { isRunning ->
 
-         */
+            val text = if (isRunning)
+                RApp.string.button_stop_schedule
+            else
+                RApp.string.button_start_schedule
+
+            viewBinding.btnStartStop.apply {
+                this.setText(text)
+                this.setOnClickListener {
+                    if (isRunning)
+                        viewModel.onClickStopSchedule()
+                    else
+                        viewModel.onClickStartSchedule()
+                }
+            }
+        }
+
+
     }
 
 

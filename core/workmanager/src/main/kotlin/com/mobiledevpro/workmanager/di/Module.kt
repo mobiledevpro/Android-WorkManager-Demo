@@ -1,5 +1,5 @@
 /*
- * Copyright 2020 | Dmitri Chernysh | http://mobile-dev.pro
+ * Copyright 2021 | Dmitri Chernysh | http://mobile-dev.pro
  *
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -15,28 +15,22 @@
  * limitations under the License.
  *
  */
-package com.mobiledevpro.profile.settings.di
+package com.mobiledevpro.workmanager.di
 
-import com.mobiledevpro.profile.settings.view.ProfileSettingsFragment
-import com.mobiledevpro.profile.settings.view.ProfileSettingsViewModel
-import org.koin.androidx.viewmodel.dsl.viewModel
+import androidx.work.WorkManager
+import org.koin.android.ext.koin.androidApplication
 import org.koin.dsl.module
 
 /**
  * Koin module
  *
- * Created on Jan 26, 2021.
+ * Created on Dec 27, 2021.
  *
  */
-
-val featureProfileSettingsModule = module {
-    scope<ProfileSettingsFragment> {
-        viewModel {
-            ProfileSettingsViewModel(
-                resourcesProvider = get()
-                // interactor = get()
-            )
-        }
-
+val coreWorkManagerModule = module {
+    single {
+        WorkManager.getInstance(
+            androidApplication().applicationContext
+        )
     }
 }

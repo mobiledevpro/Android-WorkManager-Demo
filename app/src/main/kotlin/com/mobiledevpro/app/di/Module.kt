@@ -4,6 +4,7 @@ import com.mobiledevpro.app.helper.ImplResourcesProvider
 import com.mobiledevpro.app.helper.ResourcesProvider
 import com.mobiledevpro.database.di.coreDatabaseModule
 import com.mobiledevpro.rx.di.coreRxModule
+import com.mobiledevpro.workmanager.di.coreWorkManagerModule
 import org.koin.android.ext.koin.androidApplication
 import org.koin.dsl.module
 
@@ -15,7 +16,8 @@ import org.koin.dsl.module
 fun getModules() = listOf(
     presentationCommonModule,
     coreRxModule,
-    coreDatabaseModule
+    coreDatabaseModule,
+    coreWorkManagerModule
 )
 
 val presentationCommonModule = module {

@@ -2,11 +2,11 @@
 
 buildscript {
     ext.rootVersions = [
-            "kotlin"        : "1.6.0",
-            "gradle"        : "4.2.2",
-            "playServices"  : "4.3.10",
-            "koin"          : "3.1.2",
-            "navigation"    : '2.3.5'
+            "kotlin"      : "1.6.0",
+            "gradle"      : "4.2.2",
+            "playServices": "4.3.10",
+            "koin"        : "3.1.4",
+            "navigation"  : '2.3.5'
     ]
 
     repositories {
@@ -16,7 +16,7 @@ buildscript {
 
     dependencies {
         classpath "com.android.tools.build:gradle:$rootVersions.gradle"
-        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$rootVersions.kotlin"
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:1.6.10"
         classpath "com.google.gms:google-services:$rootVersions.playServices"
         classpath "io.insert-koin:koin-gradle-plugin:$rootVersions.koin"
     }
@@ -57,9 +57,9 @@ ext {
     appVersionName = "1.0.0"
     appVersionCode = 1
 
-    compileSdkVersion = 30
+    compileSdkVersion = 31
     minSdkVersion = 21
-    targetSdkVersion = 30
+    targetSdkVersion = 31
 
     versions = [
             "appcompat"       : '1.3.1',
@@ -81,69 +81,77 @@ ext {
             "room"            : "2.2.4",
             "leakcanary"      : '2.7',
             "playCore"        : '1.10.1',
-            "playCoreKtx"     : '1.8.1'
+            "playCoreKtx"     : '1.8.1',
+            "workmanager"     : '2.7.1'
     ]
 
     deps = [
-            "appcompat"               : "androidx.appcompat:appcompat:$versions.appcompat",
-            "preference"              : "androidx.preference:preference:$versions.preference",
-            "material"                : "com.google.android.material:material:$versions.material",
-            "constraintLayout"        : "androidx.constraintlayout:constraintlayout:$versions.constraintLayout",
-            "coreKtx"                 : "androidx.core:core-ktx:$versions.coreKtx",
-            "activity"                : "androidx.activity:activity-ktx:$versions.activity",
-            "fragment"                : "androidx.fragment:fragment-ktx:$versions.fragment",
+            "appcompat"         : "androidx.appcompat:appcompat:$versions.appcompat",
+            "preference"        : "androidx.preference:preference:$versions.preference",
+            "material"          : "com.google.android.material:material:$versions.material",
+            "constraintLayout"  : "androidx.constraintlayout:constraintlayout:$versions.constraintLayout",
+            "coreKtx"           : "androidx.core:core-ktx:$versions.coreKtx",
+            "activity"          : "androidx.activity:activity-ktx:$versions.activity",
+            "fragment"          : "androidx.fragment:fragment-ktx:$versions.fragment",
 
             //Navigation
-            "navigationFragment"      : "androidx.navigation:navigation-fragment-ktx:$rootVersions.navigation",
-            "navigationUi"            : "androidx.navigation:navigation-ui-ktx:$rootVersions.navigation",
+            "navigationFragment": "androidx.navigation:navigation-fragment-ktx:$rootVersions.navigation",
+            "navigationUi"      : "androidx.navigation:navigation-ui-ktx:$rootVersions.navigation",
 
             //Dynamic Feature support
-            "navigationDynamic"       : "androidx.navigation:navigation-dynamic-features-fragment:$rootVersions.navigation",
-            "playCore"                : "com.google.android.play:core:$versions.playCore",
-            "playCoreKtx"             : "com.google.android.play:core-ktx:$versions.playCoreKtx",
+            "navigationDynamic" : "androidx.navigation:navigation-dynamic-features-fragment:$rootVersions.navigation",
+            "playCore"          : "com.google.android.play:core:$versions.playCore",
+            "playCoreKtx"       : "com.google.android.play:core-ktx:$versions.playCoreKtx",
 
             //common
-            "commonUI"                : "com.github.mobiledevpro:android-kotlin-mvvm-template:$versions.commonUi",
+            "commonUI"          : "com.github.mobiledevpro:android-kotlin-mvvm-template:$versions.commonUi",
 
             //LifeCycle
-            "viewModel"               : "androidx.lifecycle:lifecycle-viewmodel-ktx:$versions.lifecycle",
-            "liveData"                : "androidx.lifecycle:lifecycle-livedata-ktx:$versions.lifecycle",
-            "saveState"               : "androidx.lifecycle:lifecycle-viewmodel-savedstate:$versions.lifecycle",
-            "lifecycleService"        : "androidx.lifecycle:lifecycle-service:$versions.lifecycle",
-            "lifecycleCompiler"       : "androidx.lifecycle:lifecycle-compiler:$versions.lifecycle",
+            "viewModel"         : "androidx.lifecycle:lifecycle-viewmodel-ktx:$versions.lifecycle",
+            "liveData"          : "androidx.lifecycle:lifecycle-livedata-ktx:$versions.lifecycle",
+            "saveState"         : "androidx.lifecycle:lifecycle-viewmodel-savedstate:$versions.lifecycle",
+            "lifecycleService"  : "androidx.lifecycle:lifecycle-service:$versions.lifecycle",
+            "lifecycleCompiler" : "androidx.lifecycle:lifecycle-compiler:$versions.lifecycle",
 
             //DI, Koin
-            "koinCore"                : "io.insert-koin:koin-core:$rootVersions.koin",
+            "koinCore"          : "io.insert-koin:koin-core:$rootVersions.koin",
             //Koin main features for Android (Scope,ViewModel ...)
-            "koinAndroid"             : "io.insert-koin:koin-android:$rootVersions.koin",
+            "koinAndroid"       : "io.insert-koin:koin-android:$rootVersions.koin",
             //Koin Java Compatibility
-            "koinCompat"              : "io.insert-koin:koin-android-compat:$rootVersions.koin",
+            "koinCompat"        : "io.insert-koin:koin-android-compat:$rootVersions.koin",
+            //Koin Workmanager
+            "koinWorkmanager"   : "io.insert-koin:koin-androidx-workmanager:$rootVersions.koin",
 
             //Rx
-            "rxAndroid"               : "io.reactivex.rxjava2:rxandroid:$versions.rx.android",
-            "rxKotlin"                : "io.reactivex.rxjava2:rxkotlin:$versions.rx.kotlin",
+            "rxAndroid"         : "io.reactivex.rxjava2:rxandroid:$versions.rx.android",
+            "rxKotlin"          : "io.reactivex.rxjava2:rxkotlin:$versions.rx.kotlin",
 
             //Room
-            "room"                    : "androidx.room:room-runtime:$versions.room",
-            "roomKtx"                 : "androidx.room:room-ktx:$versions.room",
-            "roomCompiler"            : "androidx.room:room-compiler:$versions.room",
-            "roomRx"                  : "androidx.room:room-rxjava2:$versions.room",
+            "room"              : "androidx.room:room-runtime:$versions.room",
+            "roomKtx"           : "androidx.room:room-ktx:$versions.room",
+            "roomCompiler"      : "androidx.room:room-compiler:$versions.room",
+            "roomRx"            : "androidx.room:room-rxjava2:$versions.room",
 
             //testing
-            "leakcanaryDebug"         : "com.squareup.leakcanary:leakcanary-android:$versions.leakcanary"
+            "leakcanaryDebug"   : "com.squareup.leakcanary:leakcanary-android:$versions.leakcanary",
+
+            //Background
+            "workmanager"       : "androidx.work:work-runtime:$versions.workmanager",
+            "workmanagerKt"     : "androidx.work:work-runtime-ktx:$versions.workmanager",
+            "workmanagerRx"     : "androidx.work:work-rxjava2:$versions.workmanager"
+
     ]
 
-    /*
-    features = [
-            "chatCore": project(":feature:chat_core")
-    ]
-
-     */
 
     core = [
-            "navigation": project(":core:navigation"),
-            "utils"     : project(":core:utils"),
-            "rx"        : project("core:rx"),
-            "database"  : project("core:database")
+            "navigation" : project(":core:navigation"),
+            "utils"      : project(":core:utils"),
+            "rx"         : project("core:rx"),
+            "database"   : project("core:database"),
+            "workmanager": project("core:workmanager")
+    ]
+
+    feature = [
+            "price_alerter" : project(":feature:worker_price_alerter")
     ]
 }

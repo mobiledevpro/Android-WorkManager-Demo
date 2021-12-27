@@ -31,8 +31,20 @@
                     bind:items="@{model.listMessages}" />
                 -->
 
+        <TextView
+            android:id="@+id/tv_alert_explanation"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:textSize="14sp"
+            android:gravity="center_horizontal"
+            android:textColor="@color/colorTextSecondary"
+            android:text="@string/message_alert_explanation"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toTopOf="@+id/btn_start_stop" />
 
         <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_start_stop"
             android:layout_width="0dp"
             android:layout_height="56dp"
             android:layout_margin="@dimen/activity_vertical_margin"
@@ -41,7 +53,8 @@
             android:text="@string/button_start_schedule"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintStart_toStartOf="parent"
+            android:onClick="@{()-> model.onClickStartSchedule()}" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

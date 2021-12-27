@@ -8,7 +8,7 @@ android {
     compileSdkVersion rootProject.compileSdkVersion
 
     defaultConfig {
-        applicationId "com.mobiledevpro.example.workmanager"
+        applicationId "com.mobiledevpro.sample.workmanager"
         minSdkVersion rootProject.minSdkVersion
         targetSdkVersion rootProject.targetSdkVersion
         vectorDrawables.useSupportLibrary = true
@@ -95,8 +95,10 @@ android {
         viewBinding true
         buildConfig true
     }
+
     dynamicFeatures = [
-            ':feature:home'
+            ':feature:home',
+            ':feature:worker_price_alerter'
     ]
 
 }
@@ -121,6 +123,7 @@ dependencies {
     //DI
     api deps.koinCore
     api deps.koinAndroid
+    api deps.koinWorkmanager
 
     //Lifecycle
     api deps.viewModel
@@ -136,5 +139,6 @@ dependencies {
     api core.rx
     api core.utils
     api core.database
+    api core.workmanager
 }
 

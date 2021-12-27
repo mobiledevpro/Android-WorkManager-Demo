@@ -1,5 +1,5 @@
 /*
- * Copyright 2020 | Dmitri Chernysh | http://mobile-dev.pro
+ * Copyright 2021 | Dmitri Chernysh | http://mobile-dev.pro
  *
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -15,20 +15,13 @@
  * limitations under the License.
  *
  */
-package com.mobiledevpro.home.di
+package com.mobiledevpro.worker.price.alerter.domain.interactor
 
-import com.mobiledevpro.home.view.HomeFragment
-import com.mobiledevpro.home.view.HomeViewModel
-import org.koin.androidx.viewmodel.dsl.viewModel
-import org.koin.dsl.module
+/**
+ * Interactor for [com.mobiledevpro.worker.price.alerter.PriceAlerterWorker]
+ *
+ * Created on Dec 27, 2021.
+ *
+ */
 
-
-val featureHomeModule = module {
-    scope<HomeFragment> {
-        viewModel {
-            HomeViewModel(
-                workManager = get()
-            )
-        }
-    }
-}
+class ImplPriceAlerterInteractor : PriceAlerterInteractor
