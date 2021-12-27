@@ -22,6 +22,7 @@ import com.mobiledevpro.common.ui.base.FragmentSettings
 import com.mobiledevpro.home.R
 import com.mobiledevpro.home.databinding.FragmentHomeBinding
 import com.mobiledevpro.home.di.featureHomeModule
+import com.mobiledevpro.worker.price.alerter.di.featurePriceAlerterModule
 import org.koin.android.ext.android.inject
 import org.koin.android.scope.AndroidScopeComponent
 import org.koin.androidx.scope.fragmentScope
@@ -51,7 +52,12 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(
     private val viewModel: HomeViewModel by inject()
 
     init {
-        loadKoinModules(featureHomeModule)
+        loadKoinModules(
+            arrayListOf(
+                featureHomeModule,
+                featurePriceAlerterModule
+            )
+        )
     }
 
     override fun onInitDataBinding() {

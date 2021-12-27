@@ -27,7 +27,7 @@ val featureHomeModule = module {
     scope<HomeFragment> {
         viewModel {
             HomeViewModel(
-                workManagerUtil = get()
+                workManager = get()
             )
         }
     }

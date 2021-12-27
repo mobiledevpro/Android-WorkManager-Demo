@@ -20,8 +20,7 @@ package com.mobiledevpro.workmanager
 import android.util.Log
 import androidx.work.*
 
-
-fun WorkManager.enqueue(
+fun WorkManager.runUniqueWork(
     request: OneTimeWorkRequest,
     uniqueRequestName: String,
     policy: ExistingWorkPolicy = ExistingWorkPolicy.KEEP
@@ -31,7 +30,7 @@ fun WorkManager.enqueue(
     enqueueUniqueWork(uniqueRequestName, policy, request)
 }
 
-fun WorkManager.enqueueSequence(
+fun WorkManager.runSequenceWork(
     requestList: List<OneTimeWorkRequest>,
     uniqueRequestName: String,
     policy: ExistingWorkPolicy = ExistingWorkPolicy.KEEP
@@ -58,7 +57,7 @@ fun WorkManager.enqueueSequence(
         }
 }
 
-fun WorkManager.enqueue(
+fun WorkManager.runUniqueWork(
     request: PeriodicWorkRequest,
     uniqueRequestName: String,
     policy: ExistingPeriodicWorkPolicy = ExistingPeriodicWorkPolicy.REPLACE

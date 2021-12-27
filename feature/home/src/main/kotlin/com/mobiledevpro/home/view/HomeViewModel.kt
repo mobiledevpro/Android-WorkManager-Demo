@@ -21,8 +21,12 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.OnLifecycleEvent
 import androidx.work.OneTimeWorkRequestBuilder
 import androidx.work.PeriodicWorkRequestBuilder
+import androidx.work.WorkManager
 import com.mobiledevpro.common.ui.base.BaseViewModel
-import com.mobiledevpro.worker.*
+import com.mobiledevpro.worker.price.alerter.PriceAlerterWorker
+import com.mobiledevpro.workmanager.runUniqueWork
+import com.mobiledevpro.workmanager.setDefaultBackOffCriteria
+import com.mobiledevpro.workmanager.setDefaultConstraints
 import java.util.concurrent.TimeUnit
 
 /**
@@ -33,7 +37,7 @@ import java.util.concurrent.TimeUnit
  */
 
 class HomeViewModel(
-    private val workManagerUtil: WorkManagerUtil
+    private val workManager: WorkManager
 ) : BaseViewModel() {
 
     @OnLifecycleEvent(Lifecycle.Event.ON_START)
@@ -58,22 +62,29 @@ class HomeViewModel(
      */
 
     private fun startOnetimeWorker() {
-        OneTimeWorkRequestBuilder<UploadFilesWorker>()
+        OneTimeWorkRequestBuilder<PriceAlerterWorker>()
             .setDefaultConstraints()
             .setDefaultBackOffCriteria()
             .build()
-            .let {
-                workManagerUtil.enqueue(it, UploadFilesWorker::class.java.name)
+            .let { request ->
+
+                workManager.runUniqueWork(
+                    request,
+                    "${PriceAlerterWorker::class.java.name}_onetime"
+                )
             }
 
     }
 
     private fun startPeriodicWorker() {
-        PeriodicWorkRequestBuilder<UploadFilesWorker>(15, TimeUnit.MINUTES)
+        PeriodicWorkRequestBuilder<PriceAlerterWorker>(15, TimeUnit.MINUTES)
             .setDefaultConstraints()
             .build()
-            .let {
-                workManagerUtil.enqueue(it, UploadFilesWorker::class.java.name)
+            .let { request ->
+                workManager.runUniqueWork(
+                    request,
+                    "${PriceAlerterWorker::class.java.name}_periodic"
+                )
             }
     }
 

@@ -50,8 +50,14 @@ class PriceAlerterWorker(
             .toViewResult()
             .map { result ->
                 when (result) {
-                    is RxResult.Success -> Result.success()
-                    is RxResult.Failure -> Result.retry()
+                    is RxResult.Success -> {
+                        Log.d(TAG, "createWork: Success")
+                        Result.success()
+                    }
+                    is RxResult.Failure -> {
+                        Log.d(TAG, "createWork: Failed. Retry.")
+                        Result.retry()
+                    }
                 }
             }
 
