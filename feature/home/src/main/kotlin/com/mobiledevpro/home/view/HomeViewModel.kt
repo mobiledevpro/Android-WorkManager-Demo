@@ -19,13 +19,10 @@ package com.mobiledevpro.home.view
 
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.OnLifecycleEvent
-import androidx.work.BackoffPolicy
-import androidx.work.OneTimeWorkRequest
 import androidx.work.OneTimeWorkRequestBuilder
 import androidx.work.PeriodicWorkRequestBuilder
 import com.mobiledevpro.common.ui.base.BaseViewModel
-import com.mobiledevpro.worker.UploadFilesWorker
-import com.mobiledevpro.worker.WorkManagerUtil
+import com.mobiledevpro.worker.*
 import java.util.concurrent.TimeUnit
 
 /**
@@ -50,7 +47,8 @@ class HomeViewModel(
     }
 
     fun onClickSchedule() {
-        startOnetimeWorker()
+        //startOnetimeWorker()
+        startPeriodicWorker()
     }
 
     /*
@@ -61,12 +59,9 @@ class HomeViewModel(
 
     private fun startOnetimeWorker() {
         OneTimeWorkRequestBuilder<UploadFilesWorker>()
-            .setConstraints(workManagerUtil.constraints)
-            .setBackoffCriteria(
-                BackoffPolicy.LINEAR,
-                OneTimeWorkRequest.MIN_BACKOFF_MILLIS,
-                TimeUnit.MILLISECONDS
-            ).build()
+            .setDefaultConstraints()
+            .setDefaultBackOffCriteria()
+            .build()
             .let {
                 workManagerUtil.enqueue(it, UploadFilesWorker::class.java.name)
             }
@@ -74,8 +69,8 @@ class HomeViewModel(
     }
 
     private fun startPeriodicWorker() {
-        PeriodicWorkRequestBuilder<UploadFilesWorker>(30, TimeUnit.MINUTES)
-            .setConstraints(workManagerUtil.constraints)
+        PeriodicWorkRequestBuilder<UploadFilesWorker>(15, TimeUnit.MINUTES)
+            .setDefaultConstraints()
             .build()
             .let {
                 workManagerUtil.enqueue(it, UploadFilesWorker::class.java.name)

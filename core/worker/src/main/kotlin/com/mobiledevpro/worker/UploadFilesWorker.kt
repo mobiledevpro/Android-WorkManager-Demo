@@ -49,7 +49,7 @@ class UploadFilesWorker(appContext: Context, params: WorkerParameters) :
             Log.d(TAG, "createWork: end")
 
             emitter.onSuccess(
-                Result.success()
+                Result.retry()
             )
         }
 

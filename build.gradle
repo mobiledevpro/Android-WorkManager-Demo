@@ -120,7 +120,7 @@ ext {
             //Koin Java Compatibility
             "koinCompat"        : "io.insert-koin:koin-android-compat:$rootVersions.koin",
             //Koin Workmanager
-            "koinWorkmanager" : "io.insert-koin:koin-androidx-workmanager:$rootVersions.koin",
+            "koinWorkmanager"   : "io.insert-koin:koin-androidx-workmanager:$rootVersions.koin",
 
             //Rx
             "rxAndroid"         : "io.reactivex.rxjava2:rxandroid:$versions.rx.android",
@@ -136,7 +136,7 @@ ext {
             "leakcanaryDebug"   : "com.squareup.leakcanary:leakcanary-android:$versions.leakcanary",
 
             //Background
-            "workmanager"     : "androidx.work:work-runtime:$versions.workmanager",
+            "workmanager"       : "androidx.work:work-runtime:$versions.workmanager",
             "workmanagerKt"     : "androidx.work:work-runtime-ktx:$versions.workmanager",
             "workmanagerRx"     : "androidx.work:work-rxjava2:$versions.workmanager"
 
@@ -144,10 +144,10 @@ ext {
 
 
     core = [
-            "navigation": project(":core:navigation"),
-            "utils"     : project(":core:utils"),
-            "rx"        : project("core:rx"),
-            "database"  : project("core:database"),
-            "worker" : project("core:worker")
+            "navigation" : project(":core:navigation"),
+            "utils"      : project(":core:utils"),
+            "rx"         : project("core:rx"),
+            "database"   : project("core:database"),
+            "workmanager": project("core:workmanager")
     ]
 }

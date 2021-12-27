@@ -138,6 +138,6 @@ dependencies {
     api core.rx
     api core.utils
     api core.database
-    api core.worker
+    api core.workmanager
 }
 
