@@ -15,30 +15,50 @@
  * limitations under the License.
  *
  */
-package com.mobiledevpro.worker
+package com.mobiledevpro.worker.price.alerter
 
 import android.content.Context
 import android.util.Log
 import androidx.work.RxWorker
 import androidx.work.WorkerParameters
+import com.mobiledevpro.rx.RxResult
+import com.mobiledevpro.rx.toViewResult
+import com.mobiledevpro.worker.price.alerter.domain.interactor.PriceAlerterInteractor
+import io.reactivex.Completable
 import io.reactivex.Single
 
 /**
- * Worker to upload something to server
+ * Worker to check stocks price notify about price changes
  *
- * Created on Dec 06, 2021.
+ * NOTE:
+ *
+ * #1 Get stock price form API
+ * #2 Save data into local database
+ * #3 Compare the current and the last price and notify the user about changes.
+ *
+ * Created on Dec 27, 2021.
  *
  */
-class UploadFilesWorker(appContext: Context, params: WorkerParameters) :
-    RxWorker(appContext, params) {
+class PriceAlerterWorker(
+    appContext: Context,
+    params: WorkerParameters,
+    private val interactor: PriceAlerterInteractor
+) : RxWorker(appContext, params) {
 
     override fun createWork(): Single<Result> =
-        Single.create { emitter ->
+        test()
+            .toViewResult()
+            .map { result ->
+                when (result) {
+                    is RxResult.Success -> Result.success()
+                    is RxResult.Failure -> Result.retry()
+                }
+            }
+
+
+    private fun test(): Completable =
+        Completable.create { emitter ->
             if (emitter.isDisposed) return@create
-
-            Log.d(TAG, "createWork: start")
-
-            //todo:
 
             try {
                 Thread.sleep(5000)
@@ -46,16 +66,10 @@ class UploadFilesWorker(appContext: Context, params: WorkerParameters) :
                 Log.e(TAG, "createWork: EXCEPTION: ${e.localizedMessage}", e)
             }
 
-            Log.d(TAG, "createWork: end")
-
-            emitter.onSuccess(
-                Result.retry()
-            )
+            emitter.onComplete()
         }
-
 
     companion object {
         const val TAG = "WorkerTest"
     }
-
 }

@@ -15,24 +15,12 @@
  * limitations under the License.
  *
  */
-package com.mobiledevpro.worker.di
+package com.mobiledevpro.worker.price.alerter.domain.interactor
 
-import androidx.work.WorkManager
-import com.mobiledevpro.worker.WorkManagerUtil
-import org.koin.android.ext.koin.androidApplication
-import org.koin.dsl.module
-
-
-val coreWorkManagerModule = module {
-    single {
-        WorkManager.getInstance(
-            androidApplication().applicationContext
-        )
-    }
-
-    single {
-        WorkManagerUtil(
-            workManager = get()
-        )
-    }
-}
+/**
+ * Interactor for [com.mobiledevpro.worker.price.alerter.PriceAlerterWorker]
+ *
+ * Created on Dec 27, 2021.
+ *
+ */
+interface PriceAlerterInteractor

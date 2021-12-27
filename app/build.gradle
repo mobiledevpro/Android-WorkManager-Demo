@@ -97,7 +97,8 @@ android {
     }
 
     dynamicFeatures = [
-            ':feature:home'
+            ':feature:home',
+            ':feature:worker_price_alerter'
     ]
 
 }

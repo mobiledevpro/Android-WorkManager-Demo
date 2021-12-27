@@ -4,7 +4,7 @@ include(
     ":core:utils",
     ":core:rx",
     ":core:database",
-    ":core:worker",
+    ":core:workmanager",
     ":feature:home",
-    ":core:workmanager"
+    ":feature:worker_price_alerter"
 )

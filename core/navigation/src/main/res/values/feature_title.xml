@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="title_home">Home</string>
-    <string name="title_worker">Worker</string>
+    <string name="title_worker_price_alerter">Worker Price Alerter</string>
 </resources>

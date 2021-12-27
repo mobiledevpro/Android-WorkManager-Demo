@@ -16,7 +16,7 @@ buildscript {
 
     dependencies {
         classpath "com.android.tools.build:gradle:$rootVersions.gradle"
-        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$rootVersions.kotlin"
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:1.6.10"
         classpath "com.google.gms:google-services:$rootVersions.playServices"
         classpath "io.insert-koin:koin-gradle-plugin:$rootVersions.koin"
     }
@@ -149,5 +149,9 @@ ext {
             "rx"         : project("core:rx"),
             "database"   : project("core:database"),
             "workmanager": project("core:workmanager")
+    ]
+
+    feature = [
+            "price_alerter" : project(":feature:worker_price_alerter")
     ]
 }
