@@ -30,9 +30,7 @@ class ImplResourcesProvider(
 ) : ResourcesProvider {
 
     override fun getErrorMessage(throwable: Throwable?): String =
-        when (throwable) {
-            else -> throwable?.localizedMessage ?: ""
-        }
+        throwable?.localizedMessage ?: ""
 
 
     override fun getStringMessage(resId: Int): String =

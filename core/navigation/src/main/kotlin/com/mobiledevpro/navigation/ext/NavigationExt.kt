@@ -29,8 +29,8 @@ fun Fragment.launch(navigation: Navigation) {
     val commonNavOptionsBuilder = NavOptions.Builder()
 
     val navResId = when (navigation.to) {
-       // NavigateTo.CHAT_MAIN -> R.id.actionNavToChatMain
-      //  NavigateTo.PROFILE_SETTINGS -> R.id.actionNavToProfileSettings
+        NavigateTo.HOME -> R.id.actionNavToHome
+        NavigateTo.SETTINGS -> R.id.actionNavToSettings
         else -> 0
     }
 
@@ -42,9 +42,8 @@ fun Fragment.launch(navigation: Navigation) {
                 commonNavOptionsBuilder.build()
             )
     else
-        when (navigation.to) {
-            NavigateTo.BACK ->
-                requireActivity().onBackPressed()
-        }
+        if (navigation.to == NavigateTo.BACK)
+            requireActivity().onBackPressed()
+
 
 }

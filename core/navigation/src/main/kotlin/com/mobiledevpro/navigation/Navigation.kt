@@ -25,7 +25,7 @@ data class Navigation(val to: NavigateTo) {
 }
 
 enum class NavigateTo {
-    CHAT_MAIN,
-    PROFILE_SETTINGS,
+    HOME,
+    SETTINGS,
     BACK
 }

@@ -66,10 +66,10 @@ class HomeViewModel(
         val isRunning = MediatorLiveData<Boolean>()
 
         val check: (List<WorkInfo>) -> Boolean = { workInfoList ->
-            val info = workInfoList.last()
+            val info: WorkInfo? = if (workInfoList.isNotEmpty()) workInfoList.last() else null
             Log.d("WorkerTest", "workInfo: $info ")
 
-            !info.state.isFinished
+            info?.state?.isFinished == false
         }
 
         isRunning.value = false

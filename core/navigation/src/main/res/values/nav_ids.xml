@@ -3,4 +3,7 @@
     <item name="nav_main" type="id" />
     <item name="feature_home" type="id" />
 
+    <item name="actionNavToHome" type="id" />
+    <item name="actionNavToSettings" type="id" />
+
 </resources>
