@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/item_stock_list"
+        android:enabled="true"
+        android:icon="@drawable/ic_view_list_white_24dp"
+        android:title="@string/menu_stock_list" />
+
+    <item
+        android:id="@+id/item_empty"
+        android:enabled="false"
+        android:icon="@null"
+        android:title="" />
+
+    <item
+        android:id="@+id/item_alert_log"
+        android:enabled="true"
+        android:icon="@drawable/ic_notifications_white_24dp"
+        android:title="@string/menu_alert_log" />
+</menu>

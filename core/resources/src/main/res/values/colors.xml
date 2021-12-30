@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="ic_launcher_background">#1C2E46</color>
+    <color name="ic_launcher_background">@color/colorPrimary</color>
 
     <color name="colorPrimary">#1C2E46</color>
-    <color name="colorPrimaryDark">#192A3E</color>
-    <color name="colorPrimaryLight">#2D5872</color>
+    <color name="colorPrimaryDark">#13253A</color>
+    <color name="colorPrimaryLight">#26495E</color>
     <color name="colorAccent">#12B0BE</color>
 
     <color name="colorTextPrimary">@color/colorPrimary</color>
@@ -30,4 +30,6 @@
     <color name="colorTextMessageSent">@color/colorWhite</color>
     <color name="colorTextMessageReceived">@color/colorTextPrimary</color>
     <color name="colorTextMessageTime">#BDBDBD</color>
+
+    <color name="colorSystemBarTransparent">#80000000</color>
 </resources>

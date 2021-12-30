@@ -14,7 +14,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/colorWindowGreyBackground">
+        android:background="@color/colorWindowBackground">
 
 
         <TextView
@@ -38,9 +38,19 @@
             android:text="@string/button_start_schedule"
             app:icon="@drawable/ic_schedule_white_24dp"
             app:iconGravity="textStart"
-            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintBottom_toTopOf="@+id/bottom_navigation"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
+
+        <com.google.android.material.bottomnavigation.BottomNavigationView
+            android:id="@+id/bottom_navigation"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:labelVisibilityMode="auto"
+            app:menu="@menu/menu_home" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

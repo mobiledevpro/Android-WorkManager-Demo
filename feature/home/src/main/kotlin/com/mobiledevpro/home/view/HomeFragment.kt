@@ -29,7 +29,7 @@ import org.koin.android.scope.AndroidScopeComponent
 import org.koin.androidx.scope.fragmentScope
 import org.koin.core.context.loadKoinModules
 import org.koin.core.scope.Scope
-import com.mobiledevpro.app.R as RApp
+import com.mobiledevpro.resources.R as RApp
 
 /**
  * Home screen
@@ -44,7 +44,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(
         homeIconId = RApp.drawable.ic_back_arrow_light_24dp,
         statusBarColor = RApp.color.colorPrimary,
         appBarColor = RApp.color.colorPrimary,
-        appWindowBackground = RApp.color.colorWindowGreyBackground
+        appWindowBackground = RApp.color.colorWindowBackground
     )
 ), AndroidScopeComponent {
 
