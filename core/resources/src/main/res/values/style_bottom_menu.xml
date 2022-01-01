@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="AppTheme.BottomNavigationView" parent="Widget.Material3.BottomNavigationView">
+        <item name="materialThemeOverlay">@style/AppTheme.BottomNavigationView.Overlay</item>
+    </style>
+
+    <style name="AppTheme.BottomNavigationView.Overlay" parent="">
+        <item name="colorSurface">@color/colorPrimaryDark</item>
+        <item name="colorOnSurfaceVariant">@color/colorTextSecondary</item>
+        <item name="colorSecondaryContainer">@color/colorPrimaryLight</item>
+    </style>
+</resources>

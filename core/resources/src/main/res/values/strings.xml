@@ -1,9 +1,12 @@
 <resources>
     <string name="app_name">Stock Price Alerter</string>
 
-    <string name="button_start_schedule">Start Checking Price</string>
-    <string name="button_stop_schedule">Stop Checking Price</string>
+    <string name="button_start_schedule">Start</string>
+    <string name="button_stop_schedule">Stop</string>
 
     <string name="message_alert_explanation">You\'ll be notified on price changes every 15 minutes\nbetween 9:30 p.m. and 4:00 p.m. by US time</string>
 
+
+    <string name="menu_stock_list">Stock List</string>
+    <string name="menu_alert_log">Alert Log</string>
 </resources>

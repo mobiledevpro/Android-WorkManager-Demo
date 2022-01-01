@@ -8,3 +8,4 @@ include(
     ":feature:home",
     ":feature:worker_price_alerter"
 )
+include(":core:resources")
