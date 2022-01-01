@@ -16,40 +16,49 @@
         android:layout_height="match_parent"
         android:background="@color/colorWindowBackground">
 
+        <!--
+                <TextView
+                    android:id="@+id/tv_alert_explanation"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal"
+                    android:text="@string/message_alert_explanation"
+                    android:textColor="@color/colorTextSecondary"
+                    android:textSize="14sp"
+                    app:layout_constraintBottom_toTopOf="@+id/btn_start_stop"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent" />
+                    -->
 
-        <TextView
-            android:id="@+id/tv_alert_explanation"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:gravity="center_horizontal"
-            android:text="@string/message_alert_explanation"
-            android:textColor="@color/colorTextSecondary"
-            android:textSize="14sp"
-            app:layout_constraintBottom_toTopOf="@+id/btn_start_stop"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
 
-        <com.google.android.material.button.MaterialButton
+        <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
             android:id="@+id/btn_start_stop"
-            android:layout_width="0dp"
-            android:layout_height="56dp"
-            android:layout_margin="@dimen/activity_vertical_margin"
-            android:onClick="@{()-> model.onClickStartSchedule()}"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:contentDescription="@string/button_start_schedule"
             android:text="@string/button_start_schedule"
+            app:fabCustomSize="32dp"
             app:icon="@drawable/ic_schedule_white_24dp"
-            app:iconGravity="textStart"
-            app:layout_constraintBottom_toTopOf="@+id/bottom_navigation"
+            app:layout_constraintBottom_toBottomOf="@+id/barrier_bottom_menu"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/barrier_bottom_menu" />
+
+        <androidx.constraintlayout.widget.Barrier
+            android:id="@+id/barrier_bottom_menu"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:barrierDirection="top"
+            app:constraint_referenced_ids="bottom_navigation" />
 
         <com.google.android.material.bottomnavigation.BottomNavigationView
             android:id="@+id/bottom_navigation"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            app:labelVisibilityMode="auto"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:labelVisibilityMode="auto"
             app:menu="@menu/menu_home" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>

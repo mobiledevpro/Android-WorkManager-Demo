@@ -84,6 +84,8 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(
                         viewModel.onClickStartSchedule()
                 }
             }
+
+
         }
 
 

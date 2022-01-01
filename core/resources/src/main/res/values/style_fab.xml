@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="AppTheme.ExtendedFloatingActionButton" parent="Widget.Material3.ExtendedFloatingActionButton.Icon.Primary">
+        <item name="materialThemeOverlay">@style/AppTheme.FloatingActionButton.Overlay</item>
+    </style>
+
+    <style name="AppTheme.FloatingActionButton" parent="Widget.Material3.FloatingActionButton.Primary">
+        <item name="materialThemeOverlay">@style/AppTheme.FloatingActionButton.Overlay</item>
+    </style>
+
+    <style name="AppTheme.FloatingActionButton.Overlay" parent="">
+        <item name="colorContainer">@color/colorAccent</item>
+        <!-- text color -->
+        <item name="colorOnContainer">@color/colorPrimaryDark</item>
+    </style>
+</resources>
