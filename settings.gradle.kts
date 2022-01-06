@@ -5,7 +5,8 @@ include(
     ":core:rx",
     ":core:database",
     ":core:workmanager",
+    ":core:resources",
     ":feature:home",
-    ":feature:worker_price_alerter"
+    ":feature:worker_price_alerter",
+    ":feature:stock_list"
 )
-include(":core:resources")

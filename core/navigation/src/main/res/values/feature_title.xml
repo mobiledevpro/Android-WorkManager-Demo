@@ -2,4 +2,5 @@
 <resources>
     <string name="title_home">Home</string>
     <string name="title_worker_price_alerter">Worker Price Alerter</string>
+    <string name="title_stock_list">Stock List</string>
 </resources>
