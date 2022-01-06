@@ -17,12 +17,14 @@
  */
 package com.mobiledevpro.home.view
 
+import androidx.viewpager2.widget.ViewPager2
 import com.mobiledevpro.common.ui.base.BaseFragment
 import com.mobiledevpro.common.ui.base.FragmentSettings
 import com.mobiledevpro.common.ui.extension.observe
 import com.mobiledevpro.home.R
 import com.mobiledevpro.home.databinding.FragmentHomeBinding
 import com.mobiledevpro.home.di.featureHomeModule
+import com.mobiledevpro.home.view.adapter.HomePagerAdapter
 import com.mobiledevpro.worker.price.alerter.di.featurePriceAlerterModule
 import org.koin.android.ext.android.inject
 import org.koin.android.scope.AndroidScopeComponent
@@ -64,6 +66,22 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(
     override fun onInitDataBinding() {
         viewBinding.model = viewModel
         lifecycle.addObserver(viewModel)
+
+        viewBinding.viewPager.init()
+    }
+
+    private fun ViewPager2.init() {
+        HomePagerAdapter(this@HomeFragment)
+            .let(this::setAdapter)
+/*
+        TabLayoutMediator(
+            viewBinding.tabsInventory,
+            viewBinding.viewpagerInventory
+        ) { tab, position ->
+            tab.text = inventoryPagerAdapter.getPageTitle(position)
+        }.attach()
+
+ */
     }
 
     override fun observeLifecycleEvents() {
