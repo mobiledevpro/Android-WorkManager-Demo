@@ -8,5 +8,6 @@ include(
     ":core:resources",
     ":feature:home",
     ":feature:worker_price_alerter",
-    ":feature:stock_list"
+    ":feature:stock_list",
+    ":feature:alert_log"
 )
