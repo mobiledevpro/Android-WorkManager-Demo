@@ -16,20 +16,14 @@
         android:layout_height="match_parent"
         android:background="@color/colorWindowBackground">
 
-        <!--
-                <TextView
-                    android:id="@+id/tv_alert_explanation"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:gravity="center_horizontal"
-                    android:text="@string/message_alert_explanation"
-                    android:textColor="@color/colorTextSecondary"
-                    android:textSize="14sp"
-                    app:layout_constraintBottom_toTopOf="@+id/btn_start_stop"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent" />
-                    -->
-
+        <androidx.viewpager2.widget.ViewPager2
+            android:id="@+id/view_pager"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toTopOf="@+id/barrier_bottom_menu"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
             android:id="@+id/btn_start_stop"
@@ -37,7 +31,6 @@
             android:layout_height="wrap_content"
             android:contentDescription="@string/button_start_schedule"
             android:text="@string/button_start_schedule"
-            app:fabCustomSize="32dp"
             app:icon="@drawable/ic_schedule_white_24dp"
             app:layout_constraintBottom_toBottomOf="@+id/barrier_bottom_menu"
             app:layout_constraintEnd_toEndOf="parent"
