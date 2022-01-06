@@ -26,6 +26,7 @@ import org.koin.android.scope.AndroidScopeComponent
 import org.koin.androidx.scope.fragmentScope
 import org.koin.core.context.loadKoinModules
 import org.koin.core.scope.Scope
+import com.mobiledevpro.resources.R as RApp
 
 /**
  * Stock list screen for HomePagerAdapter
@@ -36,7 +37,7 @@ import org.koin.core.scope.Scope
 class StockListFragment : BaseFragment<FragmentStockListBinding>(
     layoutId = R.layout.fragment_stock_list,
     FragmentSettings(
-        appBarTitle = 0,
+        appBarTitle = RApp.string.app_name,
         homeIconId = 0
     )
 ), AndroidScopeComponent {

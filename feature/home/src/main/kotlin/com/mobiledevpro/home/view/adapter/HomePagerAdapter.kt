@@ -19,6 +19,8 @@ package com.mobiledevpro.home.view.adapter
 
 import androidx.fragment.app.Fragment
 import androidx.viewpager2.adapter.FragmentStateAdapter
+import com.mobiledevpro.alertlog.view.AlertLogFragment
+import com.mobiledevpro.stock.list.view.StockListFragment
 
 /**
  * ViewPager adapter for Home screen [com.mobiledevpro.home.view.HomeFragment]
@@ -34,8 +36,8 @@ class HomePagerAdapter(
 
     override fun createFragment(position: Int): Fragment =
         when (position) {
-            1 -> Fragment()
-            2 -> Fragment()
+            0 -> StockListFragment()
+            1 -> AlertLogFragment()
             else -> throw RuntimeException("Fragment not found")
         }
 

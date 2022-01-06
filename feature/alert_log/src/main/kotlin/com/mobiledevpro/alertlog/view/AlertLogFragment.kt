@@ -26,6 +26,7 @@ import org.koin.android.scope.AndroidScopeComponent
 import org.koin.androidx.scope.fragmentScope
 import org.koin.core.context.loadKoinModules
 import org.koin.core.scope.Scope
+import com.mobiledevpro.resources.R as RApp
 
 /**
  * Alert log screen for HomePagerAdapter
@@ -35,7 +36,10 @@ import org.koin.core.scope.Scope
  */
 class AlertLogFragment : BaseFragment<FragmentAlertlogBinding>(
     layoutId = R.layout.fragment_alertlog,
-    FragmentSettings()
+    FragmentSettings(
+        appBarTitle = RApp.string.app_name,
+        homeIconId = 0
+    )
 ), AndroidScopeComponent {
 
     override val scope: Scope by fragmentScope()

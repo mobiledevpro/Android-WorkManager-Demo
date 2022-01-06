@@ -6,4 +6,6 @@ android.defaultConfig {
 
 dependencies {
     implementation feature.price_alerter
+    implementation feature.alert_log
+    implementation feature.stock_list
 }

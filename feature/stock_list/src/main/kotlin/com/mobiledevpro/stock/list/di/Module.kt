@@ -17,6 +17,9 @@
  */
 package com.mobiledevpro.stock.list.di
 
+import com.mobiledevpro.stock.list.view.StockListFragment
+import com.mobiledevpro.stock.list.view.StockListViewModel
+import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
 
 /**
@@ -26,5 +29,10 @@ import org.koin.dsl.module
  *
  */
 val featureStockListModule = module {
+    scope<StockListFragment> {
+        viewModel {
+            StockListViewModel()
+        }
+    }
 
 }

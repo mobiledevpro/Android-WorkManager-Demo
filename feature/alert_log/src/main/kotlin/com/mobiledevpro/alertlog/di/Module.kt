@@ -17,6 +17,9 @@
  */
 package com.mobiledevpro.alertlog.di
 
+import com.mobiledevpro.alertlog.view.AlertLogFragment
+import com.mobiledevpro.alertlog.view.AlertLogViewModel
+import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
 
 /**
@@ -26,5 +29,10 @@ import org.koin.dsl.module
  *
  */
 val featureAlertLogModule = module {
+    scope<AlertLogFragment> {
+        viewModel {
+            AlertLogViewModel()
+        }
+    }
 
 }
