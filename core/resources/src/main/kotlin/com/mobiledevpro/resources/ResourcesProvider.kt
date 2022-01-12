@@ -15,27 +15,20 @@
  * limitations under the License.
  *
  */
-package com.mobiledevpro.app.helper
+package com.mobiledevpro.resources
 
-import android.content.res.Resources
+import androidx.annotation.StringRes
 
 /**
- * Provider for app resources (as example, from strings.xml)
+ *  Provider for app resources (as example, from strings.xml)
  *
  * Created on Dec 15, 2020.
  *
  */
-class ImplResourcesProvider(
-    private val resources: Resources
-) : ResourcesProvider {
+interface ResourcesProvider {
+    fun getErrorMessage(throwable: Throwable?): String
 
-    override fun getErrorMessage(throwable: Throwable?): String =
-        throwable?.localizedMessage ?: ""
+    fun getStringMessage(@StringRes resId: Int): String
 
-
-    override fun getStringMessage(resId: Int): String =
-        resources.getString(resId)
-
-    override fun getFormattedString(resId: Int, vararg args: Any): String =
-        resources.getString(resId, *args)
+    fun getFormattedString(@StringRes resId: Int, vararg args: Any): String
 }

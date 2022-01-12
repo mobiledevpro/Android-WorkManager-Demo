@@ -154,7 +154,7 @@ ext {
 
     feature = [
             "price_alerter": project(":feature:worker_price_alerter"),
-            "stock_list"   : project(":feature:stock_list"),
+            "stock_list"   : project(':feature:watch_list'),
             "alert_log"    : project(":feature:alert_log")
     ]
 }

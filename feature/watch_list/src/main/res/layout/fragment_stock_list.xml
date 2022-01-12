@@ -6,7 +6,7 @@
 
         <variable
             name="model"
-            type="com.mobiledevpro.stock.list.view.StockListViewModel" />
+            type="com.mobiledevpro.watchlist.list.view.StockListViewModel" />
 
         <import type="android.view.View" />
     </data>

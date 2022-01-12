@@ -15,13 +15,13 @@
  * limitations under the License.
  *
  */
-package com.mobiledevpro.stock.list.view
+package com.mobiledevpro.watchlist.list.view
 
 import com.mobiledevpro.common.ui.base.BaseFragment
 import com.mobiledevpro.common.ui.base.FragmentSettings
-import com.mobiledevpro.stock.list.R
-import com.mobiledevpro.stock.list.databinding.FragmentStockListBinding
-import com.mobiledevpro.stock.list.di.featureStockListModule
+import com.mobiledevpro.watchlist.list.R
+import com.mobiledevpro.watchlist.list.databinding.FragmentStockListBinding
+import com.mobiledevpro.watchlist.list.di.featureWatchListModule
 import org.koin.android.scope.AndroidScopeComponent
 import org.koin.androidx.scope.fragmentScope
 import org.koin.core.context.loadKoinModules
@@ -38,7 +38,7 @@ class StockListFragment : BaseFragment<FragmentStockListBinding>(
     layoutId = R.layout.fragment_stock_list,
     FragmentSettings(
         appBarTitle = RApp.string.app_name,
-        homeIconId = 0
+        homeIconId = RApp.drawable.ic_back_arrow_light_24dp
     )
 ), AndroidScopeComponent {
 
@@ -47,7 +47,7 @@ class StockListFragment : BaseFragment<FragmentStockListBinding>(
     private val viewModel: StockListViewModel by lazy(LazyThreadSafetyMode.NONE) { scope.get() }
 
     init {
-        loadKoinModules(featureStockListModule)
+        loadKoinModules(featureWatchListModule)
     }
 
     override fun onInitDataBinding() {

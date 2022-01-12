@@ -7,6 +7,6 @@
     <string name="message_alert_explanation">You\'ll be notified on price changes every 15 minutes\nbetween 9:30 p.m. and 4:00 p.m. by US time</string>
 
 
-    <string name="menu_stock_list">Stock List</string>
+    <string name="menu_watch_list">Watchlist</string>
     <string name="menu_alert_log">Alert Log</string>
 </resources>

@@ -38,7 +38,7 @@ class AlertLogFragment : BaseFragment<FragmentAlertlogBinding>(
     layoutId = R.layout.fragment_alertlog,
     FragmentSettings(
         appBarTitle = RApp.string.app_name,
-        homeIconId = 0
+        homeIconId = RApp.drawable.ic_back_arrow_light_24dp
     )
 ), AndroidScopeComponent {
 

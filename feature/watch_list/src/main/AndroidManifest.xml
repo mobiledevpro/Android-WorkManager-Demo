@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:dist="http://schemas.android.com/apk/distribution"
-    package="com.mobiledevpro.stock.list">
+    package="com.mobiledevpro.watchlist.list">
 
     <dist:module
         dist:instant="false"
-        dist:title="@string/title_stock_list">
+        dist:title="@string/title_watch_list">
         <dist:delivery>
             <dist:install-time />
         </dist:delivery>

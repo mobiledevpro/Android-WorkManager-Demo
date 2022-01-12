@@ -1,5 +1,5 @@
 /*
- * Copyright 2020 | Dmitri Chernysh | http://mobile-dev.pro
+ * Copyright 2021 | Dmitri Chernysh | http://mobile-dev.pro
  *
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -15,20 +15,24 @@
  * limitations under the License.
  *
  */
-package com.mobiledevpro.app.helper
+package com.mobiledevpro.watchlist.list.di
 
-import androidx.annotation.StringRes
+import com.mobiledevpro.watchlist.list.view.StockListFragment
+import com.mobiledevpro.watchlist.list.view.StockListViewModel
+import org.koin.androidx.viewmodel.dsl.viewModel
+import org.koin.dsl.module
 
 /**
- *  Provider for app resources (as example, from strings.xml)
+ * Koin module
  *
- * Created on Dec 15, 2020.
+ * Created on Jan 06, 2022.
  *
  */
-interface ResourcesProvider {
-    fun getErrorMessage(throwable: Throwable?): String
+val featureWatchListModule = module {
+    scope<StockListFragment> {
+        viewModel {
+            StockListViewModel()
+        }
+    }
 
-    fun getStringMessage(@StringRes resId: Int): String
-
-    fun getFormattedString(@StringRes resId: Int, vararg args: Any): String
 }

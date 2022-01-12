@@ -20,7 +20,7 @@ package com.mobiledevpro.home.view.adapter
 import androidx.fragment.app.Fragment
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.mobiledevpro.alertlog.view.AlertLogFragment
-import com.mobiledevpro.stock.list.view.StockListFragment
+import com.mobiledevpro.watchlist.list.view.StockListFragment
 
 /**
  * ViewPager adapter for Home screen [com.mobiledevpro.home.view.HomeFragment]

@@ -15,28 +15,26 @@
  * limitations under the License.
  *
  */
-package com.mobiledevpro.stock.list.view
+package com.mobiledevpro.watchlist.list.domain.usecase
 
-import androidx.lifecycle.Lifecycle
-import androidx.lifecycle.OnLifecycleEvent
-import com.mobiledevpro.common.ui.base.BaseViewModel
+import com.mobiledevpro.rx.executor.ExecutionThread
+import com.mobiledevpro.rx.executor.PostExecutionThread
+import com.mobiledevpro.rx.usecase.ObservableUseCase
+import io.reactivex.Observable
 
 /**
- * View model for Stock list screen for HomePagerAdapter
+ * Use case to getting a list of saved stocks for Watchlist
  *
- * Created on Jan 06, 2022.
+ * Created on Jan 12, 2022.
  *
  */
-class StockListViewModel : BaseViewModel() {
 
+class GetWatchListUseCase(
+    threadExecutor: ExecutionThread,
+    postExecutionThread: PostExecutionThread
+) : ObservableUseCase<List<String>, String>(threadExecutor, postExecutionThread) {
 
-    @OnLifecycleEvent(Lifecycle.Event.ON_START)
-    fun onStartView() {
-        //do something on start view if it's needed
-    }
+    override fun buildUseCaseObservable(params: String?): Observable<List<String>> =
+        Observable.just(emptyList())
 
-    @OnLifecycleEvent(Lifecycle.Event.ON_STOP)
-    fun onStopView() {
-        //do something on stop view if it's needed
-    }
 }

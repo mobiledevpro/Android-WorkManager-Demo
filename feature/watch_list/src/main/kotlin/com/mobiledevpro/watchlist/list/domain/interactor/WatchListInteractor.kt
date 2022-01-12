@@ -15,24 +15,7 @@
  * limitations under the License.
  *
  */
-package com.mobiledevpro.stock.list.di
+package com.mobiledevpro.watchlist.list.domain.interactor
 
-import com.mobiledevpro.stock.list.view.StockListFragment
-import com.mobiledevpro.stock.list.view.StockListViewModel
-import org.koin.androidx.viewmodel.dsl.viewModel
-import org.koin.dsl.module
 
-/**
- * Koin module
- *
- * Created on Jan 06, 2022.
- *
- */
-val featureStockListModule = module {
-    scope<StockListFragment> {
-        viewModel {
-            StockListViewModel()
-        }
-    }
-
-}
+interface WatchListInteractor
