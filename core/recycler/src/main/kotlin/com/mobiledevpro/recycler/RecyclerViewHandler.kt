@@ -1,5 +1,5 @@
 /*
- * Copyright 2021 | Dmitri Chernysh | http://mobile-dev.pro
+ * Copyright 2020 | Dmitri Chernysh | http://mobile-dev.pro
  *
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -15,7 +15,14 @@
  * limitations under the License.
  *
  */
-package com.mobiledevpro.watchlist.list.domain.interactor
+package com.mobiledevpro.recycler
 
-
-interface WatchListInteractor
+/**
+ * Interface for events handler for RecyclerView items
+ *
+ * Created on Dec 14, 2020.
+ *
+ */
+interface RecyclerViewHandler {
+    fun onClickItem(item: Any) {}
+}

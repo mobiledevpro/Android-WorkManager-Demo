@@ -15,13 +15,15 @@
  * limitations under the License.
  *
  */
-package com.mobiledevpro.watchlist.list.view
+package com.mobiledevpro.watchlist.view
 
+import android.widget.Toast
 import com.mobiledevpro.common.ui.base.BaseFragment
 import com.mobiledevpro.common.ui.base.FragmentSettings
+import com.mobiledevpro.common.ui.extension.observe
+import com.mobiledevpro.watchlist.di.featureWatchListModule
 import com.mobiledevpro.watchlist.list.R
-import com.mobiledevpro.watchlist.list.databinding.FragmentStockListBinding
-import com.mobiledevpro.watchlist.list.di.featureWatchListModule
+import com.mobiledevpro.watchlist.list.databinding.FragmentWatchListBinding
 import org.koin.android.scope.AndroidScopeComponent
 import org.koin.androidx.scope.fragmentScope
 import org.koin.core.context.loadKoinModules
@@ -29,13 +31,13 @@ import org.koin.core.scope.Scope
 import com.mobiledevpro.resources.R as RApp
 
 /**
- * Stock list screen for HomePagerAdapter
+ * Watchlist screen for HomePagerAdapter
  *
  * Created on Jan 06, 2022.
  *
  */
-class StockListFragment : BaseFragment<FragmentStockListBinding>(
-    layoutId = R.layout.fragment_stock_list,
+class WatchListFragment : BaseFragment<FragmentWatchListBinding>(
+    layoutId = R.layout.fragment_watch_list,
     FragmentSettings(
         appBarTitle = RApp.string.app_name,
         homeIconId = RApp.drawable.ic_back_arrow_light_24dp
@@ -44,7 +46,7 @@ class StockListFragment : BaseFragment<FragmentStockListBinding>(
 
     override val scope: Scope by fragmentScope()
 
-    private val viewModel: StockListViewModel by lazy(LazyThreadSafetyMode.NONE) { scope.get() }
+    private val viewModel: WatchListViewModel by lazy(LazyThreadSafetyMode.NONE) { scope.get() }
 
     init {
         loadKoinModules(featureWatchListModule)
@@ -56,6 +58,10 @@ class StockListFragment : BaseFragment<FragmentStockListBinding>(
     }
 
     override fun observeLifecycleEvents() {
+
+        observe(viewModel.errorMessage) { errMsg ->
+            Toast.makeText(requireActivity(), errMsg, Toast.LENGTH_LONG).show()
+        }
 
     }
 

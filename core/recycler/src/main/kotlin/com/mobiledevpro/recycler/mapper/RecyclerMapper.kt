@@ -15,28 +15,22 @@
  * limitations under the License.
  *
  */
-package com.mobiledevpro.watchlist.list.view
+package com.mobiledevpro.recycler.mapper
 
-import androidx.lifecycle.Lifecycle
-import androidx.lifecycle.OnLifecycleEvent
-import com.mobiledevpro.common.ui.base.BaseViewModel
-
-/**
- * View model for Stock list screen for HomePagerAdapter
- *
- * Created on Jan 06, 2022.
- *
- */
-class StockListViewModel : BaseViewModel() {
+import com.mobiledevpro.recycler.RecyclerItem
+import com.mobiledevpro.recycler.RecyclerViewArgs
 
 
-    @OnLifecycleEvent(Lifecycle.Event.ON_START)
-    fun onStartView() {
-        //do something on start view if it's needed
+fun <T> List<T>.toRecyclerView(args: RecyclerViewArgs): List<RecyclerItem> =
+    this.mapTo(ArrayList<RecyclerItem>()) {
+        it.toRecyclerItem(args)
     }
 
-    @OnLifecycleEvent(Lifecycle.Event.ON_STOP)
-    fun onStopView() {
-        //do something on stop view if it's needed
-    }
-}
+
+fun <T> T.toRecyclerItem(args: RecyclerViewArgs) =
+    RecyclerItem(
+        data = this as Any,
+        layoutId = args.layoutResId,
+        dataVariableId = args.dataVariableId,
+        handlerVariableId = args.handlerVariableId
+    )

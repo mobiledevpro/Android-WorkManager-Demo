@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="AppTheme.Watchlist.Symbol" parent="AppTheme.TextView">
+        <item name="textAllCaps">true</item>
+        <item name="android:textColor">@color/colorWhite</item>
+    </style>
+</resources>

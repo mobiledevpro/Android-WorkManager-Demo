@@ -15,26 +15,20 @@
  * limitations under the License.
  *
  */
-package com.mobiledevpro.watchlist.list.domain.usecase
+package com.mobiledevpro.watchlist.domain.interactor
 
-import com.mobiledevpro.rx.executor.ExecutionThread
-import com.mobiledevpro.rx.executor.PostExecutionThread
-import com.mobiledevpro.rx.usecase.ObservableUseCase
+import com.mobiledevpro.rx.RxResult
+import com.mobiledevpro.rx.toViewResult
+import com.mobiledevpro.watchlist.domain.model.Stock
+import com.mobiledevpro.watchlist.domain.usecase.GetWatchListUseCase
 import io.reactivex.Observable
 
-/**
- * Use case to getting a list of saved stocks for Watchlist
- *
- * Created on Jan 12, 2022.
- *
- */
 
-class GetWatchListUseCase(
-    threadExecutor: ExecutionThread,
-    postExecutionThread: PostExecutionThread
-) : ObservableUseCase<List<String>, String>(threadExecutor, postExecutionThread) {
+class ImplWatchListInteractor(
+    private val getWatchListUseCase: GetWatchListUseCase
+) : WatchListInteractor {
 
-    override fun buildUseCaseObservable(params: String?): Observable<List<String>> =
-        Observable.just(emptyList())
-
+    override fun get(): Observable<RxResult<List<Stock>>> =
+        getWatchListUseCase.execute()
+            .toViewResult()
 }
