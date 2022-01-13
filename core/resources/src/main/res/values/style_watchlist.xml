@@ -5,4 +5,28 @@
         <item name="textAllCaps">true</item>
         <item name="android:textColor">@color/colorWhite</item>
     </style>
+
+    <style name="AppTheme.Watchlist.Company" parent="AppTheme.TextView">
+        <item name="textAllCaps">false</item>
+        <item name="android:textColor">@color/colorTextSecondary</item>
+        <item name="android:paddingStart">8dp</item>
+        <item name="android:paddingEnd">8dp</item>
+        <item name="android:gravity">center_vertical</item>
+    </style>
+
+    <style name="AppTheme.Watchlist.Price" parent="AppTheme.TextView">
+        <item name="android:textColor">@color/colorWhite</item>
+    </style>
+
+    <style name="AppTheme.Watchlist.Time" parent="AppTheme.TextView">
+        <item name="android:textColor">@color/colorTextSecondary</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:gravity">center</item>
+    </style>
+
+    <style name="AppTheme.Watchlist.PriceChange" parent="AppTheme.TextView">
+        <item name="android:textColor">@color/colorTextSecondary</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:gravity">center_vertical</item>
+    </style>
 </resources>

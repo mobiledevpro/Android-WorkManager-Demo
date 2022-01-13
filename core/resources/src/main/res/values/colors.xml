@@ -32,4 +32,7 @@
     <color name="colorTextMessageTime">#BDBDBD</color>
 
     <color name="colorSystemBarTransparent">#80000000</color>
+
+    <color name="green">#009688</color>
+    <color name="red">#F44336</color>
 </resources>
