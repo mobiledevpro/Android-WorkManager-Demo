@@ -47,6 +47,9 @@ class WatchListViewModel(
     private val _listStock = MutableLiveData<List<RecyclerItem>?>()
     val listStock: LiveData<List<RecyclerItem>?> = _listStock
 
+    private val _isMarketClosed = MutableLiveData<Boolean>()
+    val isMarketClosed: LiveData<Boolean> = _isMarketClosed
+
     private val recyclerViewArgs = RecyclerViewArgs(
         R.layout.item_stock,
         BR.stock,
@@ -62,6 +65,8 @@ class WatchListViewModel(
 
     init {
         observeWatchList()
+        //TODO: fill it by a real data
+        _isMarketClosed.value = true
     }
 
     private fun observeWatchList() {

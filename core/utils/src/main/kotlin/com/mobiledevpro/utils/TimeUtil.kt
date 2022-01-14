@@ -43,6 +43,12 @@ fun Long.getTimeString(format: TimeFormat): String {
     }
 }
 
+fun Long.toTimeString(pattern: String): String =
+    SimpleDateFormat(pattern, Locale.getDefault()).apply {
+        timeZone = Calendar.getInstance().timeZone
+    }.format(Date(this))
+
+
 private object TimePattern {
     const val amPm = "h:mm a"
 }

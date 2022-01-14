@@ -36,6 +36,8 @@ class GetWatchListUseCase(
     postExecutionThread: PostExecutionThread
 ) : ObservableUseCase<List<Stock>, String>(threadExecutor, postExecutionThread) {
 
+    private val fakeTimMs: Long = 1642109400000
+
     override fun buildUseCaseObservable(params: String?): Observable<List<Stock>> =
         createFakeList()
             .toObservable()
@@ -53,7 +55,7 @@ class GetWatchListUseCase(
                 2848.30,
                 15.34,
                 0.54,
-                1642090932395
+                fakeTimMs
             ).also(list::add)
 
             Stock(
@@ -62,7 +64,7 @@ class GetWatchListUseCase(
                 330.93,
                 -2.30,
                 -0.75,
-                1642090932395
+                fakeTimMs
             ).also(list::add)
 
             Stock(
@@ -71,7 +73,7 @@ class GetWatchListUseCase(
                 532.29,
                 -5.00,
                 -0.93,
-                1642090932395
+                fakeTimMs
             ).also(list::add)
 
             emitter.onSuccess(list)

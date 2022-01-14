@@ -13,6 +13,10 @@
             name="handler"
             type="com.mobiledevpro.recycler.RecyclerViewHandler" />
 
+        <import type="com.mobiledevpro.resources.R" />
+
+        <import type="androidx.core.content.ContextCompat" />
+
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -48,7 +52,7 @@
             style="@style/AppTheme.Watchlist.Price"
             android:layout_width="wrap_content"
             android:layout_height="0dp"
-            android:text="@{stock.symbol}"
+            android:text="@{stock.priceStr}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             tools:text="2,848.30" />
@@ -59,17 +63,17 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:contentDescription="@null"
+            android:src="@{ContextCompat.getDrawable(context, stock.marketOpenIconResId)}"
             app:layout_constraintBottom_toBottomOf="@+id/tv_update_time"
             app:layout_constraintStart_toStartOf="@+id/tv_symbol"
-            app:layout_constraintTop_toTopOf="@+id/tv_update_time"
-            app:srcCompat="@drawable/ic_time_green_24dp" />
+            app:layout_constraintTop_toTopOf="@+id/tv_update_time" />
 
         <TextView
             android:id="@+id/tv_update_time"
             style="@style/AppTheme.Watchlist.Time"
             android:layout_width="wrap_content"
             android:layout_height="0dp"
-            android:text="@{stock.symbol}"
+            android:text="@{stock.getLastUpdateTimeStr}"
             app:layout_constraintStart_toEndOf="@+id/img_time"
             app:layout_constraintTop_toBottomOf="@+id/tv_symbol"
             tools:text="7:43 PM | Jan 12" />
@@ -80,12 +84,12 @@
             style="@style/AppTheme.Watchlist.PriceChange"
             android:layout_width="wrap_content"
             android:layout_height="0dp"
-            android:text="@{stock.symbol}"
-            android:textColor="@color/green"
+            android:text="@{stock.priceChangeStr}"
+            android:textColor="@{ContextCompat.getColor(context, stock.getPriceChangeColorResId)}"
             app:layout_constraintBottom_toBottomOf="@+id/tv_update_time"
             app:layout_constraintEnd_toEndOf="@+id/tv_price"
             app:layout_constraintTop_toTopOf="@+id/tv_update_time"
-            tools:text="+15.34 (+0.54)" />
+            tools:text="+15.34 (+0.54%)" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
