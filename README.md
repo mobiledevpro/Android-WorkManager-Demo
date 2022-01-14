@@ -8,7 +8,7 @@
 [![CodeFactor](https://www.codefactor.io/repository/github/mobiledevpro/jetpack-workmanager-example/badge)](https://www.codefactor.io/repository/github/mobiledevpro/jetpack-workmanager-example)
 [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=mobiledevpro_Jetpack-WorkManager-Example&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=mobiledevpro_Jetpack-WorkManager-Example)
 
-![GitHub last commit](https://img.shields.io/github/last-commit/mobiledevro/Jetpack-WorkManager-Example?color=red&style=for-the-badge)
+![GitHub last commit](https://img.shields.io/github/last-commit/mobiledevpro/Jetpack-WorkManager-Example?color=red&style=for-the-badge)
 
 ## [WorkManager basics (article)](https://medium.com/androiddevelopers/workmanager-basics-beba51e94048)
 
