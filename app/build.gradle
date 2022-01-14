@@ -21,7 +21,7 @@ android {
     }
 
     signingConfigs {
-        //DON"T forget to add APP_KEYPWD and APP_KSTOREPWD to ENV on CI
+        //DON"T forget to add APP_KEYPWD and APP_KSTOREPWD to ENV on CI or on local PC
         release {
             try {
                 keyAlias 'here alias value'
@@ -99,7 +99,7 @@ android {
     dynamicFeatures = [
             ':feature:home',
             ':feature:worker_price_alerter',
-            ':feature:stock_list',
+            ':feature:watch_list',
             ':feature:alert_log'
     ]
 

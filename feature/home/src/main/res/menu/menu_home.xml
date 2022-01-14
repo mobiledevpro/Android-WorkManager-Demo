@@ -4,7 +4,7 @@
         android:id="@+id/item_stock_list"
         android:enabled="true"
         android:icon="@drawable/ic_view_list_white_24dp"
-        android:title="@string/menu_stock_list" />
+        android:title="@string/menu_watch_list" />
 
     <item
         android:id="@+id/item_empty"

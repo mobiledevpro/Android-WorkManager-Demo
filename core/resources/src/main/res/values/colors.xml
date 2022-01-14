@@ -11,7 +11,7 @@
     <color name="colorTextPrimaryLight">@color/colorWindowGreyBackground</color>
     <color name="colorTextSecondary">#757575</color>
 
-    <color name="colorDivider">#BDBDBD</color>
+    <color name="colorDivider">#757575</color>
     <color name="colorWindowBackground">@color/colorPrimary</color>
     <color name="colorWindowGreyBackground">#E5E5E5</color>
     <color name="colorStateDisabled">#D3D1D3</color>
@@ -32,4 +32,8 @@
     <color name="colorTextMessageTime">#BDBDBD</color>
 
     <color name="colorSystemBarTransparent">#80000000</color>
+
+    <color name="green">#009688</color>
+    <color name="red">#F44336</color>
+    <color name="yellow">#FF9800</color>
 </resources>

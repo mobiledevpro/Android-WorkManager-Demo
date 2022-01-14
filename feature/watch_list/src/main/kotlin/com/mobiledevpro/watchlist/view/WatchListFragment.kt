@@ -15,13 +15,15 @@
  * limitations under the License.
  *
  */
-package com.mobiledevpro.alertlog.view
+package com.mobiledevpro.watchlist.view
 
-import com.mobiledevpro.alertlog.R
-import com.mobiledevpro.alertlog.databinding.FragmentAlertlogBinding
-import com.mobiledevpro.alertlog.di.featureAlertLogModule
+import android.widget.Toast
 import com.mobiledevpro.common.ui.base.BaseFragment
 import com.mobiledevpro.common.ui.base.FragmentSettings
+import com.mobiledevpro.common.ui.extension.observe
+import com.mobiledevpro.watchlist.di.featureWatchListModule
+import com.mobiledevpro.watchlist.list.R
+import com.mobiledevpro.watchlist.list.databinding.FragmentWatchListBinding
 import org.koin.android.scope.AndroidScopeComponent
 import org.koin.androidx.scope.fragmentScope
 import org.koin.core.context.loadKoinModules
@@ -29,13 +31,13 @@ import org.koin.core.scope.Scope
 import com.mobiledevpro.resources.R as RApp
 
 /**
- * Alert log screen for HomePagerAdapter
+ * Watchlist screen for HomePagerAdapter
  *
  * Created on Jan 06, 2022.
  *
  */
-class AlertLogFragment : BaseFragment<FragmentAlertlogBinding>(
-    layoutId = R.layout.fragment_alertlog,
+class WatchListFragment : BaseFragment<FragmentWatchListBinding>(
+    layoutId = R.layout.fragment_watch_list,
     FragmentSettings(
         appBarTitle = RApp.string.app_name,
         homeIconId = RApp.drawable.ic_back_arrow_light_24dp
@@ -44,10 +46,10 @@ class AlertLogFragment : BaseFragment<FragmentAlertlogBinding>(
 
     override val scope: Scope by fragmentScope()
 
-    private val viewModel: AlertLogViewModel by lazy(LazyThreadSafetyMode.NONE) { scope.get() }
+    private val viewModel: WatchListViewModel by lazy(LazyThreadSafetyMode.NONE) { scope.get() }
 
     init {
-        loadKoinModules(featureAlertLogModule)
+        loadKoinModules(featureWatchListModule)
     }
 
     override fun onInitDataBinding() {
@@ -56,6 +58,10 @@ class AlertLogFragment : BaseFragment<FragmentAlertlogBinding>(
     }
 
     override fun observeLifecycleEvents() {
+
+        observe(viewModel.errorMessage) { errMsg ->
+            Toast.makeText(requireActivity(), errMsg, Toast.LENGTH_LONG).show()
+        }
 
     }
 

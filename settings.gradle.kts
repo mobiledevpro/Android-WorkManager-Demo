@@ -6,8 +6,9 @@ include(
     ":core:database",
     ":core:workmanager",
     ":core:resources",
+    ":core:recycler",
     ":feature:home",
     ":feature:worker_price_alerter",
-    ":feature:stock_list",
+    ":feature:watch_list",
     ":feature:alert_log"
 )

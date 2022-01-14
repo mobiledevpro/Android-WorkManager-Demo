@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="stock"
+            type="com.mobiledevpro.watchlist.domain.model.Stock" />
+
+        <variable
+            name="handler"
+            type="com.mobiledevpro.recycler.RecyclerViewHandler" />
+
+        <import type="com.mobiledevpro.resources.R" />
+
+        <import type="androidx.core.content.ContextCompat" />
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingStart="@dimen/activity_vertical_margin"
+        android:paddingTop="8dp"
+        android:paddingEnd="@dimen/activity_vertical_margin"
+        android:paddingBottom="8dp">
+
+        <TextView
+            android:id="@+id/tv_symbol"
+            style="@style/AppTheme.Watchlist.Symbol"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:text="@{stock.symbol}"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="GOOG" />
+
+        <TextView
+            style="@style/AppTheme.Watchlist.Company"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:text="@{stock.companyName}"
+            app:layout_constraintBottom_toBottomOf="@+id/tv_symbol"
+            app:layout_constraintStart_toEndOf="@+id/tv_symbol"
+            app:layout_constraintTop_toTopOf="@+id/tv_symbol"
+            tools:text="Alphabet Inc Class C" />
+
+        <TextView
+            android:id="@+id/tv_price"
+            style="@style/AppTheme.Watchlist.Price"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:text="@{stock.priceStr}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="2,848.30" />
+
+
+        <ImageView
+            android:id="@+id/img_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:contentDescription="@null"
+            android:src="@{ContextCompat.getDrawable(context, stock.marketOpenIconResId)}"
+            app:layout_constraintBottom_toBottomOf="@+id/tv_update_time"
+            app:layout_constraintStart_toStartOf="@+id/tv_symbol"
+            app:layout_constraintTop_toTopOf="@+id/tv_update_time" />
+
+        <TextView
+            android:id="@+id/tv_update_time"
+            style="@style/AppTheme.Watchlist.Time"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:text="@{stock.getLastUpdateTimeStr}"
+            app:layout_constraintStart_toEndOf="@+id/img_time"
+            app:layout_constraintTop_toBottomOf="@+id/tv_symbol"
+            tools:text="7:43 PM | Jan 12" />
+
+
+        <TextView
+            android:id="@+id/tv_price_change"
+            style="@style/AppTheme.Watchlist.PriceChange"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:text="@{stock.priceChangeStr}"
+            android:textColor="@{ContextCompat.getColor(context, stock.getPriceChangeColorResId)}"
+            app:layout_constraintBottom_toBottomOf="@+id/tv_update_time"
+            app:layout_constraintEnd_toEndOf="@+id/tv_price"
+            app:layout_constraintTop_toTopOf="@+id/tv_update_time"
+            tools:text="+15.34 (+0.54%)" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

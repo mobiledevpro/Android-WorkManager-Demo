@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:bind="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="model"
+            type="com.mobiledevpro.watchlist.view.WatchListViewModel" />
+
+        <import type="android.view.View" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/tv_warning"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/activity_horizontal_margin"
+            android:layout_marginEnd="@dimen/activity_horizontal_margin"
+            android:drawablePadding="8dp"
+            android:paddingStart="0dp"
+            android:paddingEnd="0dp"
+            android:text="@string/message_marker_closed"
+            android:textColor="@color/yellow"
+            android:textSize="14sp"
+            android:visibility="@{model.isMarketClosed() ? View.VISIBLE : View.GONE}"
+            app:drawableStartCompat="@drawable/ic_time_yellow_24dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_message_list"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_warning"
+            bind:divider="@{@drawable/divider_list_vertical}"
+            bind:eventHandler="@{model.listEventHandler}"
+            bind:items="@{model.listStock}" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
