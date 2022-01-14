@@ -5,10 +5,10 @@
 [![API](https://img.shields.io/badge/API-23%2B-blue.svg?style=for-the-badge)](https://android-arsenal.com/api?level=23)
 [![License](https://img.shields.io/badge/license-Apache%202.0-blue.svg?style=for-the-badge)](http://www.apache.org/licenses/LICENSE-2.0)
 
-[![CodeFactor](https://www.codefactor.io/repository/github/dmitriy-chernysh/jetpack-workmanager-example/badge)](https://www.codefactor.io/repository/github/dmitriy-chernysh/jetpack-workmanager-example)
-[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=dmitriy-chernysh_Jetpack-WorkManager-Example&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=dmitriy-chernysh_Jetpack-WorkManager-Example)
+[![CodeFactor](https://www.codefactor.io/repository/github/mobiledevpro/jetpack-workmanager-example/badge)](https://www.codefactor.io/repository/github/mobiledevpro/jetpack-workmanager-example)
+[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=mobiledevpro_Jetpack-WorkManager-Example&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=mobiledevpro_Jetpack-WorkManager-Example)
 
-![GitHub last commit](https://img.shields.io/github/last-commit/dmitriy-chernysh/Jetpack-WorkManager-Example?color=red&style=for-the-badge)
+![GitHub last commit](https://img.shields.io/github/last-commit/mobiledevro/Jetpack-WorkManager-Example?color=red&style=for-the-badge)
 
 ## [WorkManager basics (article)](https://medium.com/androiddevelopers/workmanager-basics-beba51e94048)
 
