@@ -4,19 +4,20 @@ import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Update
+import io.reactivex.Completable
 
 /**
  * Base interface
  *
  *
  */
-internal interface BaseDao<T> {
+interface BaseDao<T> {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insert(obj: T)
+    fun insert(obj: T): Completable
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insert(objList: List<T>)
+    fun insert(objList: List<T>): Completable
 
     @Update(onConflict = OnConflictStrategy.REPLACE)
     fun update(obj: T)
