@@ -142,5 +142,6 @@ dependencies {
     api core.database
     api core.workmanager
     api core.resources
+    api core.recycler
 }
 

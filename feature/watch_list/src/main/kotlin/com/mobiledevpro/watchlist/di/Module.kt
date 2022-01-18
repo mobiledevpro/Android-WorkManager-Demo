@@ -50,7 +50,7 @@ val featureWatchListModule = module {
         scoped {
             GetWatchListUseCase(
                 threadExecutor = get(named(Execution.THREAD_IO)),
-                postExecutionThread = get(named(Execution.THREAD_MAIN)),
+                postExecutionThread = get(named(Execution.THREAD_MAIN))
             )
         }
     }
