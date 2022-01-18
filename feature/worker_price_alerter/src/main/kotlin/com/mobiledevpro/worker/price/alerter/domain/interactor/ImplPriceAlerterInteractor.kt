@@ -23,6 +23,9 @@ import com.mobiledevpro.rx.None
 import com.mobiledevpro.rx.RxResult
 import com.mobiledevpro.rx.toViewResult
 import io.reactivex.Single
+import io.reactivex.disposables.CompositeDisposable
+import io.reactivex.rxkotlin.addTo
+import io.reactivex.rxkotlin.subscribeBy
 import java.util.*
 
 
@@ -37,6 +40,8 @@ class ImplPriceAlerterInteractor(
     private val insertAlertUseCase: InsertAlertUseCase
 ) : PriceAlerterInteractor {
 
+    private var subscriptions: CompositeDisposable = CompositeDisposable()
+
     override fun createDemoAlert(): Single<RxResult<None>> =
         Single.just(
             StockAlert(
@@ -48,4 +53,32 @@ class ImplPriceAlerterInteractor(
             .flatMapCompletable(insertAlertUseCase::execute)
             .toViewResult()
 
+
+    override fun addAlertOnStart() {
+        Single.just(
+            StockAlert(
+                "EVENT",
+                "Price Alerter started",
+                Date().time
+            )
+        ).flatMapCompletable(insertAlertUseCase::execute)
+            .subscribeBy {}
+            .addTo(subscriptions)
+    }
+
+
+    override fun addAlertOnStop(onComplete: () -> Unit) {
+        Single.just(
+            StockAlert(
+                "EVENT",
+                "Price Alerter stopped",
+                Date().time
+            )
+        ).flatMapCompletable(insertAlertUseCase::execute)
+            .toViewResult()
+            .subscribeBy {
+                onComplete()
+            }
+            .addTo(subscriptions)
+    }
 }

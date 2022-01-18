@@ -30,4 +30,8 @@ import io.reactivex.Single
 interface PriceAlerterInteractor {
 
     fun createDemoAlert(): Single<RxResult<None>>
+
+    fun addAlertOnStart()
+
+    fun addAlertOnStop(onComplete: () -> Unit)
 }

@@ -44,6 +44,10 @@ class PriceAlerterWorker(
     private val interactor: PriceAlerterInteractor
 ) : RxWorker(appContext, params) {
 
+    init {
+        interactor.addAlertOnStart()
+    }
+
     override fun createWork(): Single<Result> =
         interactor
             .createDemoAlert()
@@ -60,6 +64,12 @@ class PriceAlerterWorker(
                 }
             }
 
+    override fun onStopped() {
+        interactor.addAlertOnStop {
+            super.onStopped()
+        }
+
+    }
 
     private fun test(): Completable =
         Completable.create { emitter ->
