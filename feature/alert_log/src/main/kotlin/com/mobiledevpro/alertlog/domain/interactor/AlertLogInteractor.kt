@@ -17,7 +17,6 @@
  */
 package com.mobiledevpro.alertlog.domain.interactor
 
-import com.mobiledevpro.alertlog.domain.model.StockAlert
 import com.mobiledevpro.rx.RxResult
 import io.reactivex.Observable
 
@@ -29,5 +28,5 @@ import io.reactivex.Observable
  */
 interface AlertLogInteractor {
 
-    fun get(): Observable<RxResult<List<StockAlert>>>
+    fun get(): Observable<RxResult<List<com.mobiledevpro.alertlog.core.domain.model.StockAlert>>>
 }

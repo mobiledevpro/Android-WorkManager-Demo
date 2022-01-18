@@ -7,7 +7,7 @@
 
         <variable
             name="alert"
-            type="com.mobiledevpro.alertlog.domain.model.StockAlert" />
+            type="com.mobiledevpro.alertlog.core.domain.model.StockAlert" />
 
         <variable
             name="handler"

@@ -17,7 +17,6 @@
  */
 package com.mobiledevpro.alertlog.domain.interactor
 
-import com.mobiledevpro.alertlog.domain.model.StockAlert
 import com.mobiledevpro.alertlog.domain.usecase.GetAlertLogUseCase
 import com.mobiledevpro.rx.RxResult
 import com.mobiledevpro.rx.toViewResult
@@ -33,7 +32,7 @@ class ImplAlertLogInteractor(
     private val getAlertLogUseCase: GetAlertLogUseCase
 ) : AlertLogInteractor {
 
-    override fun get(): Observable<RxResult<List<StockAlert>>> =
+    override fun get(): Observable<RxResult<List<com.mobiledevpro.alertlog.core.domain.model.StockAlert>>> =
         getAlertLogUseCase.execute()
             .toViewResult()
 }

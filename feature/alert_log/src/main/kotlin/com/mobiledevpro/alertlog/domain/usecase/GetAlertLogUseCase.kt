@@ -17,7 +17,6 @@
  */
 package com.mobiledevpro.alertlog.domain.usecase
 
-import com.mobiledevpro.alertlog.domain.model.StockAlert
 import com.mobiledevpro.rx.executor.ExecutionThread
 import com.mobiledevpro.rx.executor.PostExecutionThread
 import com.mobiledevpro.rx.usecase.ObservableUseCase
@@ -34,34 +33,37 @@ import io.reactivex.Single
 class GetAlertLogUseCase(
     threadExecutor: ExecutionThread,
     postExecutionThread: PostExecutionThread
-) : ObservableUseCase<List<StockAlert>, String>(threadExecutor, postExecutionThread) {
+) : ObservableUseCase<List<com.mobiledevpro.alertlog.core.domain.model.StockAlert>, String>(
+    threadExecutor,
+    postExecutionThread
+) {
 
     private val fakeTimMs: Long = 1642109400000
 
-    override fun buildUseCaseObservable(params: String?): Observable<List<StockAlert>> =
+    override fun buildUseCaseObservable(params: String?): Observable<List<com.mobiledevpro.alertlog.core.domain.model.StockAlert>> =
         createFakeList()
             .toObservable()
 
 
-    private fun createFakeList(): Single<List<StockAlert>> =
+    private fun createFakeList(): Single<List<com.mobiledevpro.alertlog.core.domain.model.StockAlert>> =
         Single.create { emitter ->
             if (emitter.isDisposed) return@create
 
-            val list = arrayListOf<StockAlert>()
+            val list = arrayListOf<com.mobiledevpro.alertlog.core.domain.model.StockAlert>()
 
-            StockAlert(
+            com.mobiledevpro.alertlog.core.domain.model.StockAlert(
                 "GOOG",
                 "Crossing price 2,848.00 (demo mode)",
                 fakeTimMs
             ).also(list::add)
 
-            StockAlert(
+            com.mobiledevpro.alertlog.core.domain.model.StockAlert(
                 "GOOG",
                 "SHORT signal on 2,840.00 (demo mode)",
                 fakeTimMs
             ).also(list::add)
 
-            StockAlert(
+            com.mobiledevpro.alertlog.core.domain.model.StockAlert(
                 "NFLX",
                 "LONG signal on 530.00 (demo mode)",
                 fakeTimMs

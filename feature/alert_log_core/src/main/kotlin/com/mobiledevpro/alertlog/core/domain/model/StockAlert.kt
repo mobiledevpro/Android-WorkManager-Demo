@@ -1,4 +1,4 @@
-package com.mobiledevpro.alertlog.domain.model
+package com.mobiledevpro.alertlog.core.domain.model
 
 import com.mobiledevpro.utils.toTimeString
 
