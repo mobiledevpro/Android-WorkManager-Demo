@@ -4,6 +4,7 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
+import com.mobiledevpro.database.dao.StockAlertDao
 import com.mobiledevpro.database.entity.StockAlertEntity
 
 /**
@@ -18,8 +19,8 @@ import com.mobiledevpro.database.entity.StockAlertEntity
     exportSchema = true
 )
 
-internal abstract class AppDatabase : RoomDatabase() {
-    //internal abstract val userDao: UserDao
+abstract class AppDatabase : RoomDatabase() {
+    abstract val stockAlertDao: StockAlertDao
 
 
     companion object {

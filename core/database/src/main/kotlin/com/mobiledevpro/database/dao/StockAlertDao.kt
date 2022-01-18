@@ -34,5 +34,5 @@ interface StockAlertDao : BaseDao<StockAlertEntity> {
     @Query(
         "SELECT * FROM stock_alert"
     )
-    fun select(): Observable<List<StockAlertEntity>>
+    fun selectAll(): Observable<List<StockAlertEntity>>
 }

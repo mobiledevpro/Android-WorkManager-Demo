@@ -17,11 +17,14 @@
  */
 package com.mobiledevpro.alertlog.core.domain.usecase
 
+import com.mobiledevpro.alertlog.core.data.repository.AlertLogRepository
 import com.mobiledevpro.alertlog.core.domain.model.StockAlert
+import com.mobiledevpro.alertlog.core.mapper.toData
 import com.mobiledevpro.rx.executor.ExecutionThread
 import com.mobiledevpro.rx.executor.PostExecutionThread
 import com.mobiledevpro.rx.usecase.CompletableUseCase
 import io.reactivex.Completable
+import io.reactivex.Single
 
 /**
  * Use case to add a new alert ito a local Alert Log
@@ -32,10 +35,13 @@ import io.reactivex.Completable
 
 class InsertAlertUseCase(
     threadExecutor: ExecutionThread,
-    postExecutionThread: PostExecutionThread
+    postExecutionThread: PostExecutionThread,
+    private val repository: AlertLogRepository
 ) : CompletableUseCase<StockAlert>(threadExecutor, postExecutionThread) {
 
     override fun buildUseCaseObservable(params: StockAlert?): Completable =
-        Completable.complete()
+        Single.just(params)
+            .map(StockAlert::toData)
+            .flatMapCompletable(repository::insertLocal)
 
 }

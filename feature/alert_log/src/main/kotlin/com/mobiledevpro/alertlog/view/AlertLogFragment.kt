@@ -18,6 +18,8 @@
 package com.mobiledevpro.alertlog.view
 
 import com.mobiledevpro.alertlog.R
+import com.mobiledevpro.alertlog.core.di.alertLogCoreScope
+import com.mobiledevpro.alertlog.core.di.featureAlertLogCoreModule
 import com.mobiledevpro.alertlog.databinding.FragmentAlertlogBinding
 import com.mobiledevpro.alertlog.di.featureAlertLogModule
 import com.mobiledevpro.common.ui.base.BaseFragment
@@ -43,11 +45,19 @@ class AlertLogFragment : BaseFragment<FragmentAlertlogBinding>(
 ), AndroidScopeComponent {
 
     override val scope: Scope by fragmentScope()
+    private val alertLogCoreScope: Scope by alertLogCoreScope()
 
     private val viewModel: AlertLogViewModel by lazy(LazyThreadSafetyMode.NONE) { scope.get() }
 
     init {
-        loadKoinModules(featureAlertLogModule)
+        loadKoinModules(
+            listOf(
+                featureAlertLogModule,
+                featureAlertLogCoreModule
+            )
+        )
+
+        scope.linkTo(alertLogCoreScope)
     }
 
     override fun onInitDataBinding() {

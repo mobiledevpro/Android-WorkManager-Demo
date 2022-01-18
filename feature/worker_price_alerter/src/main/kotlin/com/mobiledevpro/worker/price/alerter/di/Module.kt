@@ -17,10 +17,17 @@
  */
 package com.mobiledevpro.worker.price.alerter.di
 
+import com.mobiledevpro.alertlog.core.data.local.AlertLogLocalSource
+import com.mobiledevpro.alertlog.core.data.local.ImplAlertLogLocalSource
+import com.mobiledevpro.alertlog.core.data.repository.AlertLogRepository
+import com.mobiledevpro.alertlog.core.data.repository.ImplAlertLogRepository
+import com.mobiledevpro.alertlog.core.domain.usecase.InsertAlertUseCase
+import com.mobiledevpro.rx.executor.Execution
 import com.mobiledevpro.worker.price.alerter.PriceAlerterWorker
 import com.mobiledevpro.worker.price.alerter.domain.interactor.ImplPriceAlerterInteractor
 import com.mobiledevpro.worker.price.alerter.domain.interactor.PriceAlerterInteractor
 import org.koin.androidx.workmanager.dsl.worker
+import org.koin.core.qualifier.named
 import org.koin.dsl.module
 
 /**
@@ -32,8 +39,30 @@ import org.koin.dsl.module
 
 val featurePriceAlerterModule = module {
 
-    single<PriceAlerterInteractor> {
-        ImplPriceAlerterInteractor()
+    factory<PriceAlerterInteractor> {
+        ImplPriceAlerterInteractor(
+            insertAlertUseCase = get()
+        )
+    }
+
+    factory {
+        InsertAlertUseCase(
+            threadExecutor = get(named(Execution.THREAD_IO)),
+            postExecutionThread = get(named(Execution.THREAD_MAIN)),
+            repository = get()
+        )
+    }
+
+    factory<AlertLogRepository> {
+        ImplAlertLogRepository(
+            localSource = get()
+        )
+    }
+
+    factory<AlertLogLocalSource> {
+        ImplAlertLogLocalSource(
+            database = get()
+        )
     }
 
     worker {

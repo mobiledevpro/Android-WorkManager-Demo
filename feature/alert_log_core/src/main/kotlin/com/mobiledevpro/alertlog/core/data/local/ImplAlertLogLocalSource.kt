@@ -15,25 +15,26 @@
  * limitations under the License.
  *
  */
-package com.mobiledevpro.alertlog.domain.interactor
+package com.mobiledevpro.alertlog.core.data.local
 
-import com.mobiledevpro.alertlog.core.domain.model.StockAlert
-import com.mobiledevpro.alertlog.domain.usecase.GetAlertLogUseCase
-import com.mobiledevpro.rx.RxResult
-import com.mobiledevpro.rx.toViewResult
+import com.mobiledevpro.database.AppDatabase
+import com.mobiledevpro.database.entity.StockAlertEntity
+import io.reactivex.Completable
 import io.reactivex.Observable
 
-/**
- * Interactor for Alert Log screen
- *
- * Created on Jan 17, 2022.
- *
- */
-class ImplAlertLogInteractor(
-    private val getAlertLogUseCase: GetAlertLogUseCase
-) : AlertLogInteractor {
 
-    override fun get(): Observable<RxResult<List<StockAlert>>> =
-        getAlertLogUseCase.execute()
-            .toViewResult()
+class ImplAlertLogLocalSource(
+    private val database: AppDatabase
+) : AlertLogLocalSource {
+
+    override fun get(): Observable<List<StockAlertEntity>> =
+        database.stockAlertDao
+            .selectAll()
+            .onErrorReturn {
+                emptyList<StockAlertEntity>()
+            }
+
+    override fun insert(alert: StockAlertEntity): Completable =
+        database.stockAlertDao
+            .insert(alert)
 }

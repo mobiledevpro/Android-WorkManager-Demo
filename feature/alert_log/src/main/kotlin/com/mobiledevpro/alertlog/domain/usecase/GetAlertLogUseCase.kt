@@ -17,6 +17,11 @@
  */
 package com.mobiledevpro.alertlog.domain.usecase
 
+import com.mobiledevpro.alertlog.core.data.model.StockAlertData
+import com.mobiledevpro.alertlog.core.data.repository.AlertLogRepository
+import com.mobiledevpro.alertlog.core.domain.model.StockAlert
+import com.mobiledevpro.alertlog.core.mapper.toDomain
+import com.mobiledevpro.rx.None
 import com.mobiledevpro.rx.executor.ExecutionThread
 import com.mobiledevpro.rx.executor.PostExecutionThread
 import com.mobiledevpro.rx.usecase.ObservableUseCase
@@ -32,24 +37,25 @@ import io.reactivex.Single
 
 class GetAlertLogUseCase(
     threadExecutor: ExecutionThread,
-    postExecutionThread: PostExecutionThread
-) : ObservableUseCase<List<com.mobiledevpro.alertlog.core.domain.model.StockAlert>, String>(
+    postExecutionThread: PostExecutionThread,
+    private val repository: AlertLogRepository
+) : ObservableUseCase<List<StockAlert>, None>(
     threadExecutor,
     postExecutionThread
 ) {
 
     private val fakeTimMs: Long = 1642109400000
 
-    override fun buildUseCaseObservable(params: String?): Observable<List<com.mobiledevpro.alertlog.core.domain.model.StockAlert>> =
-        createFakeList()
-            .toObservable()
+    override fun buildUseCaseObservable(params: None?): Observable<List<StockAlert>> =
+        repository.getLocal()
+            .map(List<StockAlertData>::toDomain)
 
 
-    private fun createFakeList(): Single<List<com.mobiledevpro.alertlog.core.domain.model.StockAlert>> =
+    private fun createFakeList(): Single<List<StockAlert>> =
         Single.create { emitter ->
             if (emitter.isDisposed) return@create
 
-            val list = arrayListOf<com.mobiledevpro.alertlog.core.domain.model.StockAlert>()
+            val list = arrayListOf<StockAlert>()
 
             com.mobiledevpro.alertlog.core.domain.model.StockAlert(
                 "GOOG",

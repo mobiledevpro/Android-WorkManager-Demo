@@ -22,7 +22,6 @@ import android.util.Log
 import androidx.work.RxWorker
 import androidx.work.WorkerParameters
 import com.mobiledevpro.rx.RxResult
-import com.mobiledevpro.rx.toViewResult
 import com.mobiledevpro.worker.price.alerter.domain.interactor.PriceAlerterInteractor
 import io.reactivex.Completable
 import io.reactivex.Single
@@ -46,8 +45,8 @@ class PriceAlerterWorker(
 ) : RxWorker(appContext, params) {
 
     override fun createWork(): Single<Result> =
-        test()
-            .toViewResult()
+        interactor
+            .createDemoAlert()
             .map { result ->
                 when (result) {
                     is RxResult.Success -> {
