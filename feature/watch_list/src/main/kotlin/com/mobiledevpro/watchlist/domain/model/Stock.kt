@@ -23,7 +23,7 @@ data class Stock(
             "+$priceChange (+$priceChangePercentage%)"
         else "$priceChange ($priceChangePercentage%)"
 
-    fun getLastUpdateTimeStr() = lastUpdateTimeMs.toTimeString("h:mm a | MMM d")
+    fun getLastUpdateTimeStr() = lastUpdateTimeMs.toTimeString("MMM d | h:mm a")
 
     fun getPriceStr() = "$${DecimalFormat("#,###.##").format(price)}"
 

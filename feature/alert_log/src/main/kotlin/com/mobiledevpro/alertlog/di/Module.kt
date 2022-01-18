@@ -17,9 +17,14 @@
  */
 package com.mobiledevpro.alertlog.di
 
+import com.mobiledevpro.alertlog.domain.interactor.AlertLogInteractor
+import com.mobiledevpro.alertlog.domain.interactor.ImplAlertLogInteractor
+import com.mobiledevpro.alertlog.domain.usecase.GetAlertLogUseCase
 import com.mobiledevpro.alertlog.view.AlertLogFragment
 import com.mobiledevpro.alertlog.view.AlertLogViewModel
+import com.mobiledevpro.rx.executor.Execution
 import org.koin.androidx.viewmodel.dsl.viewModel
+import org.koin.core.qualifier.named
 import org.koin.dsl.module
 
 /**
@@ -31,7 +36,22 @@ import org.koin.dsl.module
 val featureAlertLogModule = module {
     scope<AlertLogFragment> {
         viewModel {
-            AlertLogViewModel()
+            AlertLogViewModel(
+                interactor = get()
+            )
+        }
+
+        scoped<AlertLogInteractor> {
+            ImplAlertLogInteractor(
+                getAlertLogUseCase = get()
+            )
+        }
+
+        scoped {
+            GetAlertLogUseCase(
+                threadExecutor = get(named(Execution.THREAD_IO)),
+                postExecutionThread = get(named(Execution.THREAD_MAIN))
+            )
         }
     }
 

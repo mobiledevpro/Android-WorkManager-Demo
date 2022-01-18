@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="alert"
+            type="com.mobiledevpro.alertlog.domain.model.StockAlert" />
+
+        <variable
+            name="handler"
+            type="com.mobiledevpro.recycler.RecyclerViewHandler" />
+
+        <import type="com.mobiledevpro.resources.R" />
+
+        <import type="androidx.core.content.ContextCompat" />
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingStart="@dimen/activity_vertical_margin"
+        android:paddingTop="8dp"
+        android:paddingEnd="@dimen/activity_vertical_margin"
+        android:paddingBottom="8dp">
+
+        <TextView
+            android:id="@+id/tv_symbol"
+            style="@style/AppTheme.Watchlist.Symbol"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:text="@{alert.symbol}"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="GOOG" />
+
+        <TextView
+            android:id="@+id/tv_time"
+            style="@style/AppTheme.Watchlist.Time"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:text="@{alert.timeStr}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="7:43:11 PM | Jan 12" />
+
+        <TextView
+            android:id="@+id/tv_message"
+            style="@style/AppTheme.Watchlist.Message"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@{alert.message}"
+            app:layout_constraintEnd_toEndOf="@+id/tv_time"
+            app:layout_constraintStart_toStartOf="@+id/tv_symbol"
+            app:layout_constraintTop_toBottomOf="@+id/tv_symbol"
+            tools:text="Crossing price 2,848.00 (demo mode) " />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>
