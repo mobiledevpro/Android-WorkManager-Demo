@@ -15,19 +15,20 @@
  * limitations under the License.
  *
  */
-package com.mobiledevpro.worker.price.alerter.domain.interactor
+package com.mobiledevpro.home.domain.interactor
 
 import com.mobiledevpro.rx.None
 import com.mobiledevpro.rx.RxResult
 import io.reactivex.Single
 
 /**
- * Interactor for [com.mobiledevpro.worker.price.alerter.PriceAlerterWorker]
+ * Interactor for Home screen
  *
- * Created on Dec 27, 2021.
+ * Created on Feb 08, 2022.
  *
  */
-interface PriceAlerterInteractor {
+interface HomeInteractor {
+    fun addAlertOnStart(): Single<RxResult<None>>
 
-    fun createDemoAlert(): Single<RxResult<None>>
+    fun addAlertOnStop(): Single<RxResult<None>>
 }

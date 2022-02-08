@@ -15,7 +15,7 @@
  * limitations under the License.
  *
  */
-package com.mobiledevpro.worker.price.alerter.domain.interactor
+package com.mobiledevpro.home.domain.interactor
 
 import com.mobiledevpro.alertlog.core.domain.model.StockAlert
 import com.mobiledevpro.alertlog.core.domain.usecase.InsertAlertUseCase
@@ -25,26 +25,34 @@ import com.mobiledevpro.rx.toViewResult
 import io.reactivex.Single
 import java.util.*
 
-
 /**
- * Interactor for [com.mobiledevpro.worker.price.alerter.PriceAlerterWorker]
+ * Interactor for Home screen
  *
- * Created on Dec 27, 2021.
+ * Created on Feb 08, 2022.
  *
  */
-
-class ImplPriceAlerterInteractor(
+class ImplHomeInteractor(
     private val insertAlertUseCase: InsertAlertUseCase
-) : PriceAlerterInteractor {
+) : HomeInteractor {
 
-    override fun createDemoAlert(): Single<RxResult<None>> =
+    override fun addAlertOnStart(): Single<RxResult<None>> =
         Single.just(
             StockAlert(
-                "DEMO",
-                "LONG signal on 1,000.00",
+                "EVENT",
+                "Price Alerter started",
                 Date().time
             )
-        )
-            .flatMapCompletable(insertAlertUseCase::execute)
+        ).flatMapCompletable(insertAlertUseCase::execute)
             .toViewResult()
+
+    override fun addAlertOnStop(): Single<RxResult<None>> =
+        Single.just(
+            StockAlert(
+                "EVENT",
+                "Price Alerter stopped",
+                Date().time
+            )
+        ).flatMapCompletable(insertAlertUseCase::execute)
+            .toViewResult()
+
 }

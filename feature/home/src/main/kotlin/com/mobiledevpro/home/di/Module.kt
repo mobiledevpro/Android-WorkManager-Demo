@@ -17,9 +17,14 @@
  */
 package com.mobiledevpro.home.di
 
+import com.mobiledevpro.alertlog.core.domain.usecase.InsertAlertUseCase
+import com.mobiledevpro.home.domain.interactor.HomeInteractor
+import com.mobiledevpro.home.domain.interactor.ImplHomeInteractor
 import com.mobiledevpro.home.view.HomeFragment
 import com.mobiledevpro.home.view.HomeViewModel
+import com.mobiledevpro.rx.executor.Execution
 import org.koin.androidx.viewmodel.dsl.viewModel
+import org.koin.core.qualifier.named
 import org.koin.dsl.module
 
 
@@ -27,7 +32,22 @@ val featureHomeModule = module {
     scope<HomeFragment> {
         viewModel {
             HomeViewModel(
-                workManager = get()
+                workManager = get(),
+                interactor = get()
+            )
+        }
+
+        scoped<HomeInteractor> {
+            ImplHomeInteractor(
+                insertAlertUseCase = get()
+            )
+        }
+
+        scoped {
+            InsertAlertUseCase(
+                threadExecutor = get(named(Execution.THREAD_IO)),
+                postExecutionThread = get(named(Execution.THREAD_MAIN)),
+                repository = get()
             )
         }
     }

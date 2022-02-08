@@ -18,6 +18,8 @@
 package com.mobiledevpro.home.view
 
 import androidx.viewpager2.widget.ViewPager2
+import com.mobiledevpro.alertlog.core.di.alertLogCoreScope
+import com.mobiledevpro.alertlog.core.di.featureAlertLogCoreModule
 import com.mobiledevpro.common.ui.base.BaseFragment
 import com.mobiledevpro.common.ui.base.FragmentSettings
 import com.mobiledevpro.common.ui.extension.observe
@@ -51,16 +53,21 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(
 ), AndroidScopeComponent {
 
     override val scope: Scope by fragmentScope()
+    private val alertLogCoreScope: Scope by alertLogCoreScope()
 
-    private val viewModel: HomeViewModel by inject()
+    private val viewModel: HomeViewModel by inject(mode = LazyThreadSafetyMode.NONE)
+
 
     init {
         loadKoinModules(
             arrayListOf(
                 featureHomeModule,
-                featurePriceAlerterModule
+                featurePriceAlerterModule,
+                featureAlertLogCoreModule
             )
         )
+
+        scope.linkTo(alertLogCoreScope)
     }
 
     override fun onInitDataBinding() {
@@ -86,7 +93,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(
 
     override fun observeLifecycleEvents() {
 
-        observe(viewModel.isSchedulerRunning()) { isRunning ->
+        observe(viewModel.isPeriodicWorkRunning()) { isRunning ->
 
             val text = if (isRunning)
                 RApp.string.button_stop_schedule

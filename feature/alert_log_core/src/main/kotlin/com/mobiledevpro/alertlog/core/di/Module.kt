@@ -43,7 +43,7 @@ val featureAlertLogCoreModule = module {
 }
 
 fun Fragment.alertLogCoreScope() = lazy(LazyThreadSafetyMode.NONE) {
-    getKoin().getOrCreateScope(SCOPE_ID_ALERT_LOG_CORE, named(SCOPE_NAME_ALERT_LOG_CORE))
+   getKoin().getOrCreateScope(SCOPE_ID_ALERT_LOG_CORE, named(SCOPE_NAME_ALERT_LOG_CORE))
 }
 
 private const val SCOPE_NAME_ALERT_LOG_CORE = "alert_log_core"
