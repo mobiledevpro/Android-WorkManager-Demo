@@ -24,7 +24,10 @@ import androidx.work.PeriodicWorkRequestBuilder
 import androidx.work.WorkInfo
 import androidx.work.WorkManager
 import com.mobiledevpro.common.ui.base.BaseViewModel
+import com.mobiledevpro.common.ui.livedata.SingleLiveData
 import com.mobiledevpro.home.domain.interactor.HomeInteractor
+import com.mobiledevpro.navigation.NavigateTo
+import com.mobiledevpro.navigation.Navigation
 import com.mobiledevpro.utils.WORKER_PRICE_ALERT_TAG
 import com.mobiledevpro.worker.price.alerter.PriceAlerterWorker
 import com.mobiledevpro.workmanager.cancelByTag
@@ -46,6 +49,8 @@ class HomeViewModel(
     private val interactor: HomeInteractor
 ) : BaseViewModel() {
 
+    val eventNavigateTo = SingleLiveData<Navigation>()
+
     fun onClickStartSchedule() {
 
         startPeriodicWorker()
@@ -54,6 +59,10 @@ class HomeViewModel(
         interactor.addAlertOnStart()
             .subscribeBy()
             .addTo(subscriptions)
+
+        //Navigate to Alert Log
+        Navigation(NavigateTo.ALERT_LOG)
+            .let(eventNavigateTo::postValue)
     }
 
     fun onClickStopSchedule() {

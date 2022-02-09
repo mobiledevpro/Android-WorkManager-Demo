@@ -28,6 +28,7 @@ import com.mobiledevpro.home.R
 import com.mobiledevpro.home.databinding.FragmentHomeBinding
 import com.mobiledevpro.home.di.featureHomeModule
 import com.mobiledevpro.home.view.adapter.HomePagerAdapter
+import com.mobiledevpro.navigation.NavigateTo
 import com.mobiledevpro.utils.BOTTOM_MENU_ALERT_LOG_POSITION
 import com.mobiledevpro.utils.BOTTOM_MENU_WATCHLIST_POSITION
 import com.mobiledevpro.worker.price.alerter.di.featurePriceAlerterModule
@@ -83,9 +84,10 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(
 
 
     private fun ViewPager2.init() {
+        offscreenPageLimit = 2
+
         HomePagerAdapter(this@HomeFragment)
             .let(this::setAdapter)
-
 
         // Attach ViewPager to Bottom Navigation
         registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
@@ -138,7 +140,15 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(
                         viewModel.onClickStartSchedule()
                 }
             }
+        }
 
+        observe(viewModel.eventNavigateTo) { nav ->
+            when (nav.to) {
+                NavigateTo.ALERT_LOG -> {
+                    viewBinding.viewPager.setCurrentItem(1, false)
+                }
+                else -> {}
+            }
 
         }
 

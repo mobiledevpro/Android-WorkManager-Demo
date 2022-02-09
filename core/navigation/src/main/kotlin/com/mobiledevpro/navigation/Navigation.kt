@@ -27,5 +27,6 @@ data class Navigation(val to: NavigateTo) {
 enum class NavigateTo {
     HOME,
     SETTINGS,
-    BACK
+    BACK,
+    ALERT_LOG
 }
