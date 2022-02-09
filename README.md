@@ -1,7 +1,7 @@
 # Android | Kotlin | Jetpack WorkManager | Example
 
-[![Kotlin Version](https://img.shields.io/badge/kotlin-1.6.0-blue.svg?style=for-the-badge)](http://kotlinlang.org/)
-[![Gradle](https://img.shields.io/badge/gradle-6.7.1-blue.svg?style=for-the-badge)](https://lv.binarybabel.org/catalog/gradle/latest)
+[![Kotlin Version](https://img.shields.io/badge/kotlin-1.6.10-blue.svg?style=for-the-badge)](http://kotlinlang.org/)
+[![Gradle](https://img.shields.io/badge/gradle-7.2-blue.svg?style=for-the-badge)](https://lv.binarybabel.org/catalog/gradle/latest)
 [![API](https://img.shields.io/badge/API-23%2B-blue.svg?style=for-the-badge)](https://android-arsenal.com/api?level=23)
 [![License](https://img.shields.io/badge/license-Apache%202.0-blue.svg?style=for-the-badge)](http://www.apache.org/licenses/LICENSE-2.0)
 
