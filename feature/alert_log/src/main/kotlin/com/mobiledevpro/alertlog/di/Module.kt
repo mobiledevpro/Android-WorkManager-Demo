@@ -50,7 +50,8 @@ val featureAlertLogModule = module {
         scoped {
             GetAlertLogUseCase(
                 threadExecutor = get(named(Execution.THREAD_IO)),
-                postExecutionThread = get(named(Execution.THREAD_MAIN))
+                postExecutionThread = get(named(Execution.THREAD_MAIN)),
+                repository = get()
             )
         }
     }

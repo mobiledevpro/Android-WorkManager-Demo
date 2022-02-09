@@ -4,4 +4,5 @@
     <string name="title_worker_price_alerter">Worker Price Alerter</string>
     <string name="title_watch_list">Watchlist</string>
     <string name="title_alert_log">Alert Log</string>
+    <string name="title_alert_log_core">Alert Log Core</string>
 </resources>

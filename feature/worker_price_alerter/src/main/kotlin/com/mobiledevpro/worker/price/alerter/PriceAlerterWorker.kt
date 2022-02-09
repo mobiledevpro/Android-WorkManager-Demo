@@ -22,9 +22,8 @@ import android.util.Log
 import androidx.work.RxWorker
 import androidx.work.WorkerParameters
 import com.mobiledevpro.rx.RxResult
-import com.mobiledevpro.rx.toViewResult
+import com.mobiledevpro.utils.LOG_TAG_DEBUG
 import com.mobiledevpro.worker.price.alerter.domain.interactor.PriceAlerterInteractor
-import io.reactivex.Completable
 import io.reactivex.Single
 
 /**
@@ -46,36 +45,18 @@ class PriceAlerterWorker(
 ) : RxWorker(appContext, params) {
 
     override fun createWork(): Single<Result> =
-        test()
-            .toViewResult()
+        interactor
+            .createDemoAlert()
             .map { result ->
                 when (result) {
                     is RxResult.Success -> {
-                        Log.d(TAG, "createWork: Success")
+                        Log.d(LOG_TAG_DEBUG, "createWork: Success")
                         Result.success()
                     }
                     is RxResult.Failure -> {
-                        Log.d(TAG, "createWork: Failed. Retry.")
+                        Log.d(LOG_TAG_DEBUG, "createWork: Failed. Retry.")
                         Result.retry()
                     }
                 }
             }
-
-
-    private fun test(): Completable =
-        Completable.create { emitter ->
-            if (emitter.isDisposed) return@create
-
-            try {
-                Thread.sleep(5000)
-            } catch (e: InterruptedException) {
-                Log.e(TAG, "createWork: EXCEPTION: ${e.localizedMessage}", e)
-            }
-
-            emitter.onComplete()
-        }
-
-    companion object {
-        const val TAG = "WorkerTest"
-    }
 }

@@ -17,10 +17,17 @@
  */
 package com.mobiledevpro.worker.price.alerter.domain.interactor
 
+import com.mobiledevpro.rx.None
+import com.mobiledevpro.rx.RxResult
+import io.reactivex.Single
+
 /**
  * Interactor for [com.mobiledevpro.worker.price.alerter.PriceAlerterWorker]
  *
  * Created on Dec 27, 2021.
  *
  */
-interface PriceAlerterInteractor
+interface PriceAlerterInteractor {
+
+    fun createDemoAlert(): Single<RxResult<None>>
+}

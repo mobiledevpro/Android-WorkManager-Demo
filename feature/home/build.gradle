@@ -8,4 +8,5 @@ dependencies {
     implementation feature.price_alerter
     implementation feature.alert_log
     implementation feature.stock_list
+    implementation feature.alert_log_core
 }

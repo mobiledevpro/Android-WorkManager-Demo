@@ -17,7 +17,11 @@
  */
 package com.mobiledevpro.alertlog.domain.usecase
 
-import com.mobiledevpro.alertlog.domain.model.StockAlert
+import com.mobiledevpro.alertlog.core.data.model.StockAlertData
+import com.mobiledevpro.alertlog.core.data.repository.AlertLogRepository
+import com.mobiledevpro.alertlog.core.domain.model.StockAlert
+import com.mobiledevpro.alertlog.core.mapper.toDomain
+import com.mobiledevpro.rx.None
 import com.mobiledevpro.rx.executor.ExecutionThread
 import com.mobiledevpro.rx.executor.PostExecutionThread
 import com.mobiledevpro.rx.usecase.ObservableUseCase
@@ -33,14 +37,18 @@ import io.reactivex.Single
 
 class GetAlertLogUseCase(
     threadExecutor: ExecutionThread,
-    postExecutionThread: PostExecutionThread
-) : ObservableUseCase<List<StockAlert>, String>(threadExecutor, postExecutionThread) {
+    postExecutionThread: PostExecutionThread,
+    private val repository: AlertLogRepository
+) : ObservableUseCase<List<StockAlert>, None>(
+    threadExecutor,
+    postExecutionThread
+) {
 
     private val fakeTimMs: Long = 1642109400000
 
-    override fun buildUseCaseObservable(params: String?): Observable<List<StockAlert>> =
-        createFakeList()
-            .toObservable()
+    override fun buildUseCaseObservable(params: None?): Observable<List<StockAlert>> =
+        repository.getLocal()
+            .map(List<StockAlertData>::toDomain)
 
 
     private fun createFakeList(): Single<List<StockAlert>> =
@@ -49,19 +57,19 @@ class GetAlertLogUseCase(
 
             val list = arrayListOf<StockAlert>()
 
-            StockAlert(
+            com.mobiledevpro.alertlog.core.domain.model.StockAlert(
                 "GOOG",
                 "Crossing price 2,848.00 (demo mode)",
                 fakeTimMs
             ).also(list::add)
 
-            StockAlert(
+            com.mobiledevpro.alertlog.core.domain.model.StockAlert(
                 "GOOG",
                 "SHORT signal on 2,840.00 (demo mode)",
                 fakeTimMs
             ).also(list::add)
 
-            StockAlert(
+            com.mobiledevpro.alertlog.core.domain.model.StockAlert(
                 "NFLX",
                 "LONG signal on 530.00 (demo mode)",
                 fakeTimMs

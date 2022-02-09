@@ -14,7 +14,7 @@ data class Stock(
     val priceChange: Double = 0.0,
     val priceChangePercentage: Double = 0.0,
     val lastUpdateTimeMs: Long = 0,
-    val isMarketOpen: Boolean = false
+    val isMarketOpen: Boolean = true
 ) {
 
     //Format : +15.34 (+0.54%)

@@ -17,6 +17,15 @@
  */
 package com.mobiledevpro.worker.price.alerter.domain.interactor
 
+import com.mobiledevpro.alertlog.core.domain.model.StockAlert
+import com.mobiledevpro.alertlog.core.domain.usecase.InsertAlertUseCase
+import com.mobiledevpro.rx.None
+import com.mobiledevpro.rx.RxResult
+import com.mobiledevpro.rx.toViewResult
+import io.reactivex.Single
+import java.util.*
+
+
 /**
  * Interactor for [com.mobiledevpro.worker.price.alerter.PriceAlerterWorker]
  *
@@ -24,4 +33,18 @@ package com.mobiledevpro.worker.price.alerter.domain.interactor
  *
  */
 
-class ImplPriceAlerterInteractor : PriceAlerterInteractor
+class ImplPriceAlerterInteractor(
+    private val insertAlertUseCase: InsertAlertUseCase
+) : PriceAlerterInteractor {
+
+    override fun createDemoAlert(): Single<RxResult<None>> =
+        Single.just(
+            StockAlert(
+                "DEMO",
+                "LONG signal on 1,000.00",
+                Date().time
+            )
+        )
+            .flatMapCompletable(insertAlertUseCase::execute)
+            .toViewResult()
+}

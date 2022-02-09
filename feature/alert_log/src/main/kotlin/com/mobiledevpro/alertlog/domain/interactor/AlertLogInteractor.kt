@@ -17,7 +17,7 @@
  */
 package com.mobiledevpro.alertlog.domain.interactor
 
-import com.mobiledevpro.alertlog.domain.model.StockAlert
+import com.mobiledevpro.alertlog.core.domain.model.StockAlert
 import com.mobiledevpro.rx.RxResult
 import io.reactivex.Observable
 

@@ -4,6 +4,7 @@ android.defaultConfig.javaCompileOptions {
     annotationProcessorOptions {
         arguments = [
                 "room.schemaLocation"  : "$projectDir/schemas".toString(),
+                "room.incremental":"true",
                 "room.expandProjection": "true"]
     }
 }
@@ -30,8 +31,8 @@ dependencies {
     implementation deps.koinAndroid
 
     //Room
-    implementation deps.room
-    implementation deps.roomRx
-    implementation deps.roomKtx
+    api deps.room
+    api deps.roomRx
+    api deps.roomKtx
     kapt deps.roomCompiler
 }
