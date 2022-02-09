@@ -32,7 +32,7 @@ import io.reactivex.Observable
 interface StockAlertDao : BaseDao<StockAlertEntity> {
 
     @Query(
-        "SELECT * FROM stock_alert"
+        "SELECT * FROM stock_alert ORDER BY timeMs DESC"
     )
     fun selectAll(): Observable<List<StockAlertEntity>>
 }

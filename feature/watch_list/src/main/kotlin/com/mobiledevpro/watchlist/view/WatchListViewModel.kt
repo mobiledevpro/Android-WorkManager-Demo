@@ -66,7 +66,7 @@ class WatchListViewModel(
     init {
         observeWatchList()
         //TODO: fill it by a real data
-        _isMarketClosed.value = true
+        _isMarketClosed.value = false
     }
 
     private fun observeWatchList() {

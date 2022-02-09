@@ -47,10 +47,15 @@ object RecyclerViewExtension {
         items: List<RecyclerItem>?,
         handler: RecyclerViewHandler?,
         divider: Drawable?
-    ) = this.set(
-        items,
-        handler,
-        divider
-    )
+    ) {
+        this.set(
+            items,
+            handler,
+            divider
+        )
+
+        //Scroll to top
+        this.smoothScrollToPosition(0)
+    }
 
 }

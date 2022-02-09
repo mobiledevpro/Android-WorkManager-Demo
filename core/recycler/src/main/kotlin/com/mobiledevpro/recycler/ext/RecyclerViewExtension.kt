@@ -63,6 +63,4 @@ fun RecyclerView.set(
 
     adapter.setEventHandler(handler)
     adapter.updateData(items.orEmpty())
-
-    this.scrollToPosition(adapter.itemCount - 1)
 }

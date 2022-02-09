@@ -32,7 +32,7 @@ fun OneTimeWorkRequest.Builder.setDefaultConstraints() =
 fun PeriodicWorkRequest.Builder.setDefaultConstraints() =
     this.setConstraints(
         Constraints.Builder()
-            .setRequiredNetworkType(NetworkType.CONNECTED)
+            //.setRequiredNetworkType(NetworkType.CONNECTED)
             .setRequiresBatteryNotLow(true)
             .build()
     )

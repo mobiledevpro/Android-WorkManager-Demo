@@ -23,6 +23,7 @@ import com.mobiledevpro.rx.usecase.ObservableUseCase
 import com.mobiledevpro.watchlist.domain.model.Stock
 import io.reactivex.Observable
 import io.reactivex.Single
+import java.util.*
 
 /**
  * Use case to getting a list of saved stocks for Watchlist
@@ -36,7 +37,10 @@ class GetWatchListUseCase(
     postExecutionThread: PostExecutionThread
 ) : ObservableUseCase<List<Stock>, String>(threadExecutor, postExecutionThread) {
 
-    private val fakeTimMs: Long = 1642109400000
+    private val fakeTimMs: Long = Calendar.getInstance(Locale.getDefault()).let { calendar ->
+        calendar.add(Calendar.MINUTE, -15)
+        calendar.timeInMillis
+    }
 
     override fun buildUseCaseObservable(params: String?): Observable<List<Stock>> =
         createFakeList()

@@ -18,6 +18,7 @@
 package com.mobiledevpro.home.view
 
 import androidx.viewpager2.widget.ViewPager2
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.mobiledevpro.alertlog.core.di.alertLogCoreScope
 import com.mobiledevpro.alertlog.core.di.featureAlertLogCoreModule
 import com.mobiledevpro.common.ui.base.BaseFragment
@@ -27,6 +28,8 @@ import com.mobiledevpro.home.R
 import com.mobiledevpro.home.databinding.FragmentHomeBinding
 import com.mobiledevpro.home.di.featureHomeModule
 import com.mobiledevpro.home.view.adapter.HomePagerAdapter
+import com.mobiledevpro.utils.BOTTOM_MENU_ALERT_LOG_POSITION
+import com.mobiledevpro.utils.BOTTOM_MENU_WATCHLIST_POSITION
 import com.mobiledevpro.worker.price.alerter.di.featurePriceAlerterModule
 import org.koin.android.ext.android.inject
 import org.koin.android.scope.AndroidScopeComponent
@@ -75,20 +78,46 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(
         lifecycle.addObserver(viewModel)
 
         viewBinding.viewPager.init()
+        viewBinding.bottomNavigation.init()
     }
+
 
     private fun ViewPager2.init() {
         HomePagerAdapter(this@HomeFragment)
             .let(this::setAdapter)
-/*
-        TabLayoutMediator(
-            viewBinding.tabsInventory,
-            viewBinding.viewpagerInventory
-        ) { tab, position ->
-            tab.text = inventoryPagerAdapter.getPageTitle(position)
-        }.attach()
 
- */
+
+        // Attach ViewPager to Bottom Navigation
+        registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
+            override fun onPageSelected(position: Int) {
+                super.onPageSelected(position)
+
+                viewBinding.bottomNavigation.menu.let { menu ->
+                    when (position) {
+                        0 -> menu.getItem(BOTTOM_MENU_WATCHLIST_POSITION).isChecked = true
+                        1 -> menu.getItem(BOTTOM_MENU_ALERT_LOG_POSITION).isChecked = true
+                    }
+                }
+            }
+        })
+    }
+
+    private fun BottomNavigationView.init() {
+
+        //Attach Bottom Navigation to ViewPager
+        setOnItemSelectedListener { menuItem ->
+
+            viewBinding.viewPager.let { pager ->
+                pager.currentItem = when (menuItem.itemId) {
+                    R.id.item_stock_list -> 0
+                    R.id.item_alert_log -> 1
+                    else -> 0
+                }
+            }
+
+            true
+        }
+
     }
 
     override fun observeLifecycleEvents() {
