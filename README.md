@@ -10,11 +10,69 @@
 
 ![GitHub last commit](https://img.shields.io/github/last-commit/mobiledevpro/Jetpack-WorkManager-Example?color=red&style=for-the-badge)
 
-## [WorkManager basics (article)](https://medium.com/androiddevelopers/workmanager-basics-beba51e94048)
+## 3 Steps to run periodic tasks in the background even the app is closed:
 
-## [WorkManager custom configuration and WorkerFactory (article)](https://medium.com/androiddevelopers/customizing-workmanager-fundamentals-fdaa17c46dd2)
+### #1 Init Jetpack WorkManager 
 
-## [Koin 3 + WorkManager (article)](https://medium.com/koin-developers/whats-next-with-koin-2-2-3-0-releases-6c5464ae5e3d)
+```kotlin
+WorkManager.getInstance(applicationContext)
+```
+
+### #2 Setup Worker 
+
+```kotlin
+class PriceAlerterWorker(
+    appContext: Context,
+    params: WorkerParameters,
+    private val interactor: PriceAlerterInteractor
+) : RxWorker(appContext, params) {
+
+    override fun createWork(): Single<Result> =
+        interactor
+            .createDemoAlert()
+            .map { result ->
+                when (result) {
+                    is RxResult.Success -> {
+                        //Do something on success
+                        Result.success()
+                    }
+                    is RxResult.Failure -> {
+                        //Do something on fail
+                        Result.retry()
+                    }
+                }
+            }
+}
+
+```
+
+### #3 Build request and run work
+
+```kotlin
+        PeriodicWorkRequestBuilder<PriceAlerterWorker>(15, TimeUnit.MINUTES)
+            .setConstraints(
+                Constraints.Builder()
+                    .setRequiresBatteryNotLow(true)
+                    .build()
+            )
+            .addTag(WORKER_PRICE_ALERT_TAG)
+            .build()
+            .let { request ->
+                workManager.runUniqueWork(
+                    request,
+                    "${WORKER_PRICE_ALERT_TAG}_periodic"
+                )
+            }
+```
+
+
+## More about WorkManager: 
+
+### [WorkManager basics (article)](https://medium.com/androiddevelopers/workmanager-basics-beba51e94048)
+
+### [WorkManager custom configuration and WorkerFactory (article)](https://medium.com/androiddevelopers/customizing-workmanager-fundamentals-fdaa17c46dd2)
+
+### [Koin 3 + WorkManager (article)](https://medium.com/koin-developers/whats-next-with-koin-2-2-3-0-releases-6c5464ae5e3d)
 
 ## Notes:
 
