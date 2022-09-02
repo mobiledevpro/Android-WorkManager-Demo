@@ -1,11 +1,11 @@
-# Android | Kotlin | Jetpack WorkManager | Example
+# Android | Jetpack WorkManager | Demo
 
 [![Kotlin Version](https://img.shields.io/badge/kotlin-1.6.10-blue.svg?style=for-the-badge)](http://kotlinlang.org/)
 [![Gradle](https://img.shields.io/badge/gradle-7.2-blue.svg?style=for-the-badge)](https://lv.binarybabel.org/catalog/gradle/latest)
 [![API](https://img.shields.io/badge/API-23%2B-blue.svg?style=for-the-badge)](https://android-arsenal.com/api?level=23)
 [![License](https://img.shields.io/badge/license-Apache%202.0-blue.svg?style=for-the-badge)](http://www.apache.org/licenses/LICENSE-2.0)
 
-[![CodeFactor](https://www.codefactor.io/repository/github/mobiledevpro/jetpack-workmanager-example/badge)](https://www.codefactor.io/repository/github/mobiledevpro/jetpack-workmanager-example)
+[![CodeFactor](https://www.codefactor.io/repository/github/mobiledevpro/stock-price-alerter-demo/badge)](https://www.codefactor.io/repository/github/mobiledevpro/stock-price-alerter-demo)
 [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=mobiledevpro_Jetpack-WorkManager-Example&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=mobiledevpro_Jetpack-WorkManager-Example)
 
 ![GitHub last commit](https://img.shields.io/github/last-commit/mobiledevpro/Jetpack-WorkManager-Example?color=red&style=for-the-badge)
