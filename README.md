@@ -5,10 +5,16 @@
 [![API](https://img.shields.io/badge/API-23%2B-blue.svg?style=for-the-badge)](https://android-arsenal.com/api?level=23)
 [![License](https://img.shields.io/badge/license-Apache%202.0-blue.svg?style=for-the-badge)](http://www.apache.org/licenses/LICENSE-2.0)
 
-[![CodeFactor](https://www.codefactor.io/repository/github/mobiledevpro/stock-price-alerter-demo/badge)](https://www.codefactor.io/repository/github/mobiledevpro/stock-price-alerter-demo)
-[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=mobiledevpro_Jetpack-WorkManager-Example&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=mobiledevpro_Jetpack-WorkManager-Example)
+[![CodeFactor](https://www.codefactor.io/repository/github/mobiledevpro/android-workmanager-demo/badge)](https://www.codefactor.io/repository/github/mobiledevpro/android-workmanager-demo)
+[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=mobiledevpro_Android-WorkManager-Demo&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=mobiledevpro_Android-WorkManager-Demo)
 
-![GitHub last commit](https://img.shields.io/github/last-commit/mobiledevpro/Jetpack-WorkManager-Example?color=red&style=for-the-badge)
+![GitHub last commit](https://img.shields.io/github/last-commit/mobiledevpro/Android-WorkManager-Demo?color=red&style=for-the-badge)
+
+##
+
+WorkManager API makes it easy to schedule deferrable, asynchronous tasks that must be run reliably. These APIs let you create a task and hand it off to WorkManager to run when the work constraints are met.
+
+##
 
 ## 3 Steps to run periodic tasks in the background even the app is closed:
 
@@ -88,17 +94,11 @@ class PriceAlerterWorker(
 
 **Dmitri Chernysh**
 
-```diff
-# Software Developer from Ukraine | 7 years of experience in Android Development
-```
-
-[![Instagram](https://img.shields.io/badge/-instagram-E4405F?&logo=instagram&message=instagram&style=for-the-badge&logoColor=white&label=watch+stories+on)](https://www.instagram.com/mobiledevpro/)
-
-[![Linkedin](https://img.shields.io/badge/-linkedin-0A66C2?logo=linkedin&style=for-the-badge&logoColor=white&label=follow+on)](https://www.linkedin.com/in/dmitriychernysh/)
-
-[![Medium](https://img.shields.io/badge/-medium-212121?logo=medium&style=for-the-badge&logoColor=white&label=read+on)](https://medium.com/@mobiledevpro)
-
-[![Upwork](https://img.shields.io/badge/-upwork-brightgreen?logo=upwork&message=Upwork&label=hire+me+on&style=for-the-badge&logoColor=white)](https://www.upwork.com/freelancers/~01fb21586ed544f07b)
+[![Instagram](https://img.shields.io/badge/-instagram-E4405F?logo=instagram&message=Behind+the+scenes+in+Storiesn&style=for-the-badge&logoColor=white)](https://www.instagram.com/mobiledevpro/)
+[![Youtube](https://img.shields.io/badge/-youtube-red?logo=youtube&message=Youtube&style=for-the-badge)](https://www.youtube.com/@mobiledevpro?sub_confirmation=1)
+[![Twitter](https://img.shields.io/badge/-twitter-1DA1F2?logo=twitter&style=for-the-badge&logoColor=white)](https://twitter.com/mobiledev_pro)
+[![Linkedin](https://img.shields.io/badge/-linkedin-0A66C2?logo=linkedin&style=for-the-badge&logoColor=white)](https://www.linkedin.com/in/dmitriychernysh/)
+[![Upwork](https://img.shields.io/badge/-upwork-brightgreen?logo=upwork&message=Upwork&style=for-the-badge)](https://www.upwork.com/freelancers/~01fb21586ed544f07b?s=996364627857502209)
 
 ## License:
 
