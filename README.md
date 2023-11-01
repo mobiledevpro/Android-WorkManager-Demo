@@ -12,7 +12,7 @@
 
 ##
 
-WorkManager API makes it easy to schedule deferrable, asynchronous tasks that must be run reliably. These APIs let you create a task and hand it off to WorkManager to run when the work constraints are met.
+_WorkManager is the recommended solution for persistent work. Work is persistent when it remains scheduled through app restarts and system reboots. Because most background processing is best accomplished through persistent work, WorkManager is the primary recommended API for background processing._ [Read more in official docs](https://developer.android.com/topic/libraries/architecture/workmanager)
 
 ##
 
